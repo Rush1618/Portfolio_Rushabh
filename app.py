@@ -77,7 +77,7 @@ def contact_submit():
                 server.login(sender_email, sender_password)
                 server.sendmail(sender_email, receiver_email, msg.as_string())
         except Exception as e:
-            print(f"Email send failed: {e}")
+            print(f"Message send failed: {e}")
         flash('Thank you! Your message has been received.', 'success')
     else:
         flash('Please fill in all fields.', 'danger')
