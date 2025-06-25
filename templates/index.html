@@ -128,6 +128,9 @@
 <section id="github" class="main-card light-card fade-in">
     <h2 class="mb-4 fw-bold">GitHub Contributions</h2>
     <div id="github-calendar"></div>
+    <div id="github-stats" class="mt-4 text-center">
+      <span id="commit-count">Loading commit stats...</span>
+    </div>
 </section>
 
 <section id="blog" class="main-card fade-in">
@@ -280,6 +283,20 @@
     window.addEventListener('load', function() {
         document.getElementById('skeleton-loader').style.display = 'none';
     });
+    // Fetch GitHub commit stats and display below the calendar
+    fetch('https://api.github.com/users/rush1618/events/public')
+      .then(response => response.json())
+      .then(events => {
+        const commitEvents = events.filter(e => e.type === 'PushEvent');
+        let commitCount = 0;
+        commitEvents.forEach(e => {
+          commitCount += e.payload.commits.length;
+        });
+        document.getElementById('commit-count').textContent = `Recent public commits: ${commitCount}`;
+      })
+      .catch(() => {
+        document.getElementById('commit-count').textContent = 'Could not load commit stats.';
+      });
 </script>
 </body>
 </html> 
