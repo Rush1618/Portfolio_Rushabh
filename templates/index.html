@@ -134,10 +134,13 @@
 </section>
 
 <section id="github" class="main-card light-card fade-in">
-    <h2 class="mb-4 fw-bold">GitHub Contributions</h2>
+    <h2 class="mb-4 fw-bold">GitHub Contributions & Activity</h2>
     <div id="github-calendar"></div>
-    <div id="github-stats" class="mt-4 text-center">
-      <span id="commit-count">Loading commit stats...</span>
+    <div id="github-activity" class="mt-4">
+      <h4>Recent Commit Activity</h4>
+      <div id="commit-activity">Loading commit activity...</div>
+      <h4 class="mt-4">Recently Created Repositories</h4>
+      <div id="created-repos">Loading repositories...</div>
     </div>
 </section>
 
@@ -383,19 +386,43 @@
     window.addEventListener('load', function() {
         document.getElementById('skeleton-loader').style.display = 'none';
     });
-    // Fetch GitHub commit stats and display below the calendar
+    // Fetch recent commit activity
     fetch('https://api.github.com/users/rush1618/events/public')
       .then(response => response.json())
       .then(events => {
-        const commitEvents = events.filter(e => e.type === 'PushEvent');
-        let commitCount = 0;
-        commitEvents.forEach(e => {
-          commitCount += e.payload.commits.length;
+        // Count commits per repo in the last 30 days
+        const now = new Date();
+        const days30 = 1000 * 60 * 60 * 24 * 30;
+        const repoCommits = {};
+        let totalCommits = 0;
+        events.forEach(e => {
+          if (e.type === 'PushEvent' && (now - new Date(e.created_at) < days30)) {
+            const repo = e.repo.name;
+            const count = e.payload.commits.length;
+            repoCommits[repo] = (repoCommits[repo] || 0) + count;
+            totalCommits += count;
+          }
         });
-        document.getElementById('commit-count').textContent = `Recent public commits: ${commitCount}`;
+        const repoList = Object.entries(repoCommits).map(([repo, count]) =>
+          `<li><a href="https://github.com/${repo}" target="_blank">${repo}</a>: <strong>${count}</strong> commit${count > 1 ? 's' : ''}</li>`
+        ).join('');
+        document.getElementById('commit-activity').innerHTML =
+          `<p>Created <strong>${totalCommits}</strong> commit${totalCommits !== 1 ? 's' : ''} in <strong>${Object.keys(repoCommits).length}</strong> repos (last 30 days):</p><ul>${repoList}</ul>`;
       })
       .catch(() => {
-        document.getElementById('commit-count').textContent = 'Could not load commit stats.';
+        document.getElementById('commit-activity').textContent = 'Could not load commit activity.';
+      });
+    // Fetch recently created repositories
+    fetch('https://api.github.com/users/rush1618/repos?sort=created&direction=desc')
+      .then(response => response.json())
+      .then(repos => {
+        const recentRepos = repos.slice(0, 5).map(repo =>
+          `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a> <span class="text-muted">(${repo.created_at.slice(0,10)})</span></li>`
+        ).join('');
+        document.getElementById('created-repos').innerHTML = `<ul>${recentRepos}</ul>`;
+      })
+      .catch(() => {
+        document.getElementById('created-repos').textContent = 'Could not load repositories.';
       });
     document.querySelectorAll('.project-details-btn').forEach(btn => {
       btn.addEventListener('click', function() {
