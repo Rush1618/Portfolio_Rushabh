@@ -635,7 +635,7 @@ section#github.light-card {
 /* Responsive theme toggle switch positioning and scaling */
 .theme-toggle-switch {
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
   width: min(18vw, 80px);
   height: min(8vw, 44px);
   right: 3vw;
@@ -651,8 +651,11 @@ section#github.light-card {
     right: 4vw;
     left: auto;
     top: auto;
-    bottom: 4vw;
+    bottom: 7vw;
     transform: none;
+  }
+  section#contact.main-card {
+    padding-bottom: 80px !important;
   }
 }
 @media (max-width: 600px) {
@@ -660,10 +663,13 @@ section#github.light-card {
     width: min(28vw, 56px);
     height: min(12vw, 28px);
     right: 6vw;
-    bottom: 3vw;
+    bottom: 10vw;
     left: auto;
     top: auto;
     transform: none;
+  }
+  section#contact.main-card {
+    padding-bottom: 100px !important;
   }
 }
 
