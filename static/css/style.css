@@ -1357,9 +1357,13 @@ section#github.light-card {
   z-index: 1000;
   width: 96px;
   height: 44px;
-  box-shadow: 0 4px 16px rgba(54,209,196,0.18), 0 2px 8px rgba(60,60,80,0.10);
+  box-shadow: 0 4px 16px rgba(54,209,196,0.10);
   cursor: pointer;
   margin-right: 16px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(90deg, #e3f0ff 0%, #b3d1f7 100%);
+  overflow: visible;
 }
 @media (max-width: 900px) {
   .theme-toggle-switch {
@@ -2012,4 +2016,9 @@ section#github a:hover {
 }
 [data-theme='dark'] .theme-toggle-switch .icon.moon {
   color: #23243a !important;
+}
+.theme-toggle-switch:focus, .theme-toggle-switch:hover {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(54,209,196,0.18), 0 4px 16px rgba(54,209,196,0.10);
+  border-radius: 999px;
 } 
