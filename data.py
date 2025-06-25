@@ -49,6 +49,6 @@ ACHIEVEMENTS = [
 CONTACT = {
     'email': 'itsmerush@gmail.com',
     'phone': '7977356523',
-    'linkedin': 'https://linkedin.com/in/rushabh-singh-22b23a2bb',
+    'linkedin': 'https://linkedin.com/in/rushabh-singh',
     'instagram': 'https://instagram.com/rushabhsingh69'
 } 
