@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ 'dark' if session.get('dark_mode') else 'light' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.NAME }} | Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Montserrat:wght@700;400&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+<div class="bg-blob bg-blob1"></div>
+<div class="bg-blob bg-blob2"></div>
+<div class="bg-blob bg-blob3"></div>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#home">{{ data.NAME }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#github">GitHub</a></li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('toggle_dark_mode') }}">🌙</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 90px;"></div>
+
+<section id="home" class="hero-card main-card text-center d-flex flex-column align-items-center justify-content-center" style="background: linear-gradient(120deg, #232526 0%, #414345 100%); color: #fff; box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);">
+  <div class="row w-100 align-items-center flex-column-reverse flex-md-row" style="min-height: 340px;">
+    <div class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-start justify-content-center text-center text-md-start py-3">
+      <h1 class="display-3 fw-bold mb-2" style="letter-spacing:2px; color: #fff;">
+        Hi, I'm <span style="color:#ff5e62;">{{ data.NAME }}</span>
+      </h1>
+      <h3 class="fw-semibold mb-3" style="color: #36d1c4;">{{ data.ROLE }}</h3>
+      <p class="lead mb-4" style="color: #e0eafc;">{{ data.TAGLINE }}</p>
+      <a href="#contact" class="btn btn-lg mt-2 px-4 py-2" style="background: linear-gradient(90deg, #ff5e62 0%, #36d1c4 100%); color: #fff; border: none;">Contact Me</a>
+    </div>
+    <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center py-3">
+      <div style="background: rgba(255,255,255,0.08); border-radius: 50%; box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18); padding: 10px;">
+        <img src="{{ url_for('static', filename=data.PROFILE_PIC) }}" class="rounded-circle img-fluid shadow-lg" alt="Profile Picture">
+      </div>
+      <div class="mt-3" style="color: #e0eafc; font-size: 1.1rem;">
+        <span style="color:#ff5e62; font-weight:600;">Currently studying in:</span> {{ data.PLACE_OF_STUDY }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="main-card" style="overflow: visible;">
+    <h2 class="mb-4 fw-bold">Projects</h2>
+    <div class="project-slider-container position-relative">
+        <button class="project-scroll-btn left" aria-label="Scroll left">&#8592;</button>
+        <div class="project-slider d-flex flex-row flex-nowrap overflow-auto" tabindex="0">
+            {% for project in data.PROJECTS %}
+            <div class="card h-100 project-card mx-2 flex-shrink-0" style="min-width: 270px; max-width: 320px;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    <p><span class="badge bg-primary bg-gradient me-1" style="font-size:0.9em;">{{ project.tech|join(', ') }}</span></p>
+                </div>
+                <div class="card-footer d-flex justify-content-between bg-transparent border-0">
+                    <a href="{{ project.github }}" class="btn btn-outline-dark btn-sm" target="_blank">GitHub</a>
+                    <a href="{{ project.demo }}" class="btn btn-outline-primary btn-sm" target="_blank">Demo</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="project-scroll-btn right" aria-label="Scroll right">&#8594;</button>
+    </div>
+</section>
+
+<section id="achievements" class="main-card">
+    <h2 class="mb-4 fw-bold">Achievements</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+        {% for ach in data.ACHIEVEMENTS[:5] %}
+        <div class="col">
+            <div class="card h-100 achievement-card">
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <p class="card-text text-center fs-6">{{ ach }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="github" class="main-card light-card">
+    <h2 class="mb-4 fw-bold">GitHub Contributions</h2>
+    <div id="github-calendar"></div>
+</section>
+
+<section id="blog" class="main-card">
+    <h2 class="mb-4 fw-bold">Blog</h2>
+    <div>
+        {% for post in pages %}
+        {% if post.meta.published %}
+        <div class="mb-3">
+            <a href="{{ url_for('blog_post', path=post.path) }}"><strong>{{ post.meta.title }}</strong></a>
+            <span class="text-muted">{{ post.meta.date }}</span>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('blog') }}" class="btn btn-outline-secondary mt-2">View All Posts</a>
+</section>
+
+<section id="contact" class="main-card">
+    <h2 class="mb-4 fw-bold">Contact</h2>
+    <ul class="list-unstyled fs-5">
+        <li><strong>Email:</strong> <a href="mailto:{{ data.CONTACT.email }}">{{ data.CONTACT.email }}</a></li>
+        <li><strong>Phone:</strong> <a href="tel:{{ data.CONTACT.phone }}">{{ data.CONTACT.phone }}</a></li>
+        <li><strong>LinkedIn:</strong> <a href="{{ data.CONTACT.linkedin }}" target="_blank">{{ data.CONTACT.linkedin }}</a></li>
+        <li><strong>Instagram:</strong> <a href="{{ data.CONTACT.instagram }}" target="_blank">{{ data.CONTACT.instagram }}</a></li>
+    </ul>
+</section>
+
+<div class="quote-card">I don't just write code , I design solutions that scale, adapt, and empower</div>
+
+<footer class="text-center py-4 mt-5">
+    <div class="container">
+        <div class="mb-2">
+            <a href="{{ data.CONTACT.linkedin }}" class="me-2" target="_blank">LinkedIn</a>
+            <a href="{{ data.CONTACT.instagram }}" class="me-2" target="_blank">Instagram</a>
+            <a href="mailto:{{ data.CONTACT.email }}" class="me-2">Email</a>
+        </div>
+        <div>
+            &copy; {{ data.NAME }} {{ current_year }}
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if(this.hash) {
+                e.preventDefault();
+                document.querySelector(this.hash).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    // GitHub Calendar (always show current year)
+    GitHubCalendar("#github-calendar", "rush1618", { responsive: true, summary_text: "", global_stats: false, tooltips: true });
+    // 3D Laptop Model (GLB Loader)
+    function createLaptop3D() {
+        const container = document.getElementById('laptop-3d');
+        if (!container) return;
+        // Clean up previous content
+        container.innerHTML = '';
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, container.offsetWidth/container.offsetHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+        container.appendChild(renderer.domElement);
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xffffff, 1.2, 20);
+        pointLight.position.set(5, 10, 7.5);
+        scene.add(pointLight);
+        // Load GLB model
+        const loaderScript = document.createElement('script');
+        loaderScript.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js';
+        loaderScript.onload = function() {
+            const loader = new THREE.GLTFLoader();
+            loader.load('/static/models/cyber.glb', function(gltf) {
+                const model = gltf.scene;
+                model.scale.set(2.2, 2.2, 2.2);
+                model.position.y = -0.7;
+                scene.add(model);
+                // Animate
+                function animate() {
+                    requestAnimationFrame(animate);
+                    model.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                }
+                animate();
+            }, undefined, function(error) {
+                console.error('Error loading 3D model:', error);
+            });
+        };
+        document.body.appendChild(loaderScript);
+        camera.position.z = 5;
+    }
+    createLaptop3D();
+    // Project slider scroll logic
+    const slider = document.querySelector('.project-slider');
+    const leftBtn = document.querySelector('.project-scroll-btn.left');
+    const rightBtn = document.querySelector('.project-scroll-btn.right');
+    if (slider && leftBtn && rightBtn) {
+        leftBtn.onclick = () => slider.scrollBy({left: -320, behavior: 'smooth'});
+        rightBtn.onclick = () => slider.scrollBy({left: 320, behavior: 'smooth'});
+    }
+</script>
+</body>
+</html> 

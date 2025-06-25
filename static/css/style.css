@@ -1,0 +1,569 @@
+html {
+  font-size: clamp(14px, 1.5vw, 18px);
+}
+
+body, html {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0f 0%, #18181c 60%, #23243a 100%);
+  background-size: 400% 400%;
+  animation: gradientBG 18s ease infinite;
+  font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  color: #f3f6fa;
+}
+
+/* Blurred color blobs for depth */
+.bg-blob {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.bg-blob1 {
+  width: 420px; height: 420px;
+  background: #ff5e62;
+  top: 10vh; left: -120px;
+}
+.bg-blob2 {
+  width: 320px; height: 320px;
+  background: #36d1c4;
+  bottom: 0; right: -100px;
+}
+.bg-blob3 {
+  width: 220px; height: 220px;
+  background: #667eea;
+  top: 60vh; right: 10vw;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+section, .main-card, .quote-card, .light-card {
+  background: rgba(30, 32, 48, 0.85) !important;
+  color: #f3f6fa !important;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  width: 95vw;
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  padding: 2.2rem 1.5rem;
+  transition: box-shadow 0.2s, background 0.3s;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(60,60,80,0.28);
+  display: block;
+  left: 0; right: 0;
+}
+
+section.hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(31,38,135,0.10);
+  padding-top: clamp(2rem, 6vw, 4rem);
+  padding-bottom: clamp(2rem, 6vw, 4rem);
+}
+
+h1, .display-3 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+h2, .fw-bold {
+  font-size: clamp(1.3rem, 2.5vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.card, .glassmorphism, .project-card, .achievement-card {
+  background: rgba(40, 42, 60, 0.92) !important;
+  color: #f3f6fa !important;
+  border-radius: 1.2vw;
+  box-shadow: 0 2px 12px rgba(31,38,135,0.10);
+  border: 1.5px solid rgba(60,60,80,0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.2s, background 0.3s;
+}
+
+.card:hover, .glassmorphism:hover, .project-card:hover, .achievement-card:hover {
+  box-shadow: 0 12px 32px rgba(31,38,135,0.18);
+  background: rgba(255,255,255,0.32) !important;
+  transform: translateY(-6px) scale(1.04);
+}
+
+.btn, .btn-outline-dark, .btn-outline-primary, .btn-outline-secondary {
+  border-radius: 1.5rem;
+  background: linear-gradient(90deg, #3a3f5a 0%, #5f4b8b 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.10);
+  transition: background 0.3s, box-shadow 0.3s, color 0.2s;
+}
+.btn:hover, .btn:focus {
+  background: linear-gradient(90deg, #5f4b8b 0%, #3a3f5a 100%);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(118,75,162,0.18);
+}
+
+.navbar, footer {
+  background: rgba(30,32,48,0.95) !important;
+  color: #f3f6fa !important;
+  box-shadow: 0 2px 12px rgba(31,38,135,0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#laptop-3d {
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  max-height: 320px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.quote-card {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #222;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(31,38,135,0.08);
+  max-width: 700px;
+  margin: 40px auto 60px auto;
+  padding: 2.5rem 2rem;
+}
+
+@media (max-width: 991px) {
+  .main-card, .quote-card, section {
+    max-width: 98vw;
+    width: 98vw;
+    padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 2rem);
+  }
+  .threejs-model-card {
+    max-width: 98vw;
+    min-height: 140px;
+    max-height: 180px;
+  }
+  .rounded-circle.img-fluid {
+    max-width: 120px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .main-card, .quote-card, section {
+    max-width: 900px;
+    width: 80vw;
+    padding: 3rem 3rem;
+  }
+  .threejs-model-card {
+    max-width: 420px;
+    min-height: 200px;
+  }
+  .project-card .card-title {
+    font-size: 1.3rem;
+  }
+  .rounded-circle.img-fluid {
+    max-width: 180px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-card, .quote-card, section {
+    max-width: 1100px;
+    width: 70vw;
+    padding: 3.5rem 4rem;
+  }
+  .threejs-model-card {
+    max-width: 500px;
+    min-height: 240px;
+  }
+  .project-card .card-title {
+    font-size: 1.5rem;
+  }
+}
+
+.row-cols-1 .col, .row-cols-md-2 .col, .row-cols-lg-4 .col {
+  margin-bottom: 2vw;
+}
+
+.project-card, .achievement-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.project-card:hover, .achievement-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* 3D Model Card Utility */
+.threejs-model-card {
+  width: 100%;
+  max-width: 40vw;
+  aspect-ratio: 16/10;
+  min-height: 18vw;
+  max-height: 320px;
+  margin: 0 auto 2rem auto;
+  background: #f5f6fa;
+  border-radius: 1.2vw;
+  box-shadow: 0 2px 12px rgba(31,38,135,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-card .card-title {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.project-card:hover {
+  box-shadow: 0 8px 32px rgba(31,38,135,0.13);
+  transform: translateY(-6px) scale(1.04);
+}
+
+section#projects {
+  position: relative;
+  z-index: 1;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+}
+
+section#projects .row {
+  justify-content: center;
+  gap: 2vw;
+}
+
+.project-slider-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.project-slider {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 2vw;
+  padding-bottom: 0.5rem;
+  justify-content: center;
+}
+
+.project-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.project-scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.10);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.project-scroll-btn.left { left: -20px; }
+.project-scroll-btn.right { right: -20px; }
+.project-scroll-btn:hover, .project-scroll-btn:focus {
+  background: #667eea;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .project-slider-container {
+    max-width: 98vw;
+  }
+  .project-scroll-btn.left { left: 0; }
+  .project-scroll-btn.right { right: 0; }
+  .project-slider {
+    gap: 4vw;
+  }
+}
+
+/* Utility for lighter cards (for widgets like GitHub calendar) */
+.light-card {
+  background: rgba(40, 42, 60, 0.98) !important;
+  color: #f3f6fa !important;
+  box-shadow: 0 4px 24px rgba(31,38,135,0.10);
+  border-radius: 2vw;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: clamp(1.2rem, 2vw, 2.5rem) clamp(0.5rem, 2vw, 2.5rem);
+  min-width: 320px;
+  overflow-x: auto;
+  position: relative;
+  overflow: visible;
+  padding-bottom: 2.5rem;
+}
+
+section#github .form-label, section#github label, section#github select, section#github .text-muted, section#github a {
+  color: #23243a !important;
+}
+
+section#github .github-calendar {
+  background: transparent !important;
+}
+
+.card-title, .fw-bold, h2, h1, .display-3 {
+  color: #fff !important;
+}
+
+.card-text, .lead, .form-label, .text-muted, label, select, a, span, p, li {
+  color: #c7cbe6 !important;
+}
+
+/* Project card enhancements */
+.project-card .badge {
+  font-size: 1.05rem;
+  padding: 0.5em 1.1em;
+  border-radius: 1.2em;
+  margin-bottom: 0.7em;
+  margin-top: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.project-card .btn {
+  font-size: 1.08rem;
+  padding: 0.55em 1.5em;
+  border-radius: 1.5em;
+  margin: 0 0.2em;
+  min-width: 90px;
+  font-weight: 600;
+}
+.project-card .card-footer {
+  gap: 0.5em;
+  justify-content: center;
+}
+.project-card img, .project-card .project-img {
+  width: 100%;
+  max-width: 220px;
+  max-height: 140px;
+  object-fit: cover;
+  border-radius: 1em;
+  margin: 0 auto 1em auto;
+  display: block;
+}
+
+#github-calendar {
+  min-width: 1100px;
+  min-height: 450px;
+  overflow-x: auto;
+  margin: 0 auto 3rem auto;
+  display: block;
+  padding-bottom: 2.5rem;
+  scrollbar-width: none;
+}
+#github-calendar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  #github-calendar {
+    min-width: 900px;
+    min-height: 450px;
+  }
+}
+@media (max-width: 900px) {
+  #github-calendar {
+    min-width: 700px;
+    min-height: 300px;
+  }
+}
+@media (max-width: 700px) {
+  #github-calendar {
+    min-width: 500px;
+    min-height: 210px;
+  }
+}
+@media (max-width: 500px) {
+  #github-calendar {
+    min-width: 320px;
+    min-height: 150px;
+  }
+}
+
+.project-card {
+  width: 270px;
+  min-width: 270px;
+  max-width: 270px;
+  height: auto;
+  min-height: unset;
+  max-height: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0 auto;
+  background: rgba(40, 42, 60, 0.92) !important;
+  color: #f3f6fa !important;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.13);
+  border: 1.5px solid rgba(60,60,80,0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.2s, background 0.3s, transform 0.2s;
+  z-index: 2;
+  overflow: hidden;
+  align-self: center;
+}
+
+.project-card .card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding-bottom: 0.5em;
+}
+
+.project-card .card-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  min-height: 2.5em;
+}
+
+.project-card .card-text {
+  font-size: 1.01rem;
+  flex: 1 1 auto;
+  margin-bottom: 0.7em;
+  min-height: 3.2em;
+}
+
+.project-card .badge {
+  font-size: 1.05rem;
+  padding: 0.5em 1.1em;
+  border-radius: 1.2em;
+  margin-bottom: 0.7em;
+  margin-top: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.project-card .btn {
+  font-size: 1.08rem;
+  padding: 0.55em 1.5em;
+  border-radius: 1.5em;
+  margin: 0 0.2em;
+  min-width: 90px;
+  font-weight: 600;
+}
+
+.project-card .card-footer {
+  gap: 0.5em;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding-bottom: 1em;
+}
+
+@media (max-width: 1100px) {
+  section, .main-card, .quote-card, .light-card {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+  }
+  .project-slider-container {
+    max-width: 98vw;
+  }
+  .project-card {
+    width: 90vw;
+    min-width: 90vw;
+    max-width: 90vw;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+}
+
+.hero-card .rounded-circle.img-fluid {
+  max-width: 320px !important;
+  min-width: 180px;
+  border-width: 8px !important;
+}
+@media (max-width: 767px) {
+  .hero-card .rounded-circle.img-fluid {
+    max-width: 180px !important;
+    min-width: 100px;
+    border-width: 5px !important;
+  }
+}
+
+/* Hide GitHub calendar legend dots below the chart */
+#github-calendar .contrib-legend, #github-calendar .calendar-legend, #github-calendar .legend, #github-calendar .ContributionCalendar-legend, #github-calendar .github-calendar-legend {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Golden ratio for GitHub contributions card */
+section#github.light-card {
+  aspect-ratio: 1.618 / 1;
+  width: 80vw;
+  max-width: 1100px;
+  min-width: 340px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4vw auto;
+  padding: 3rem 2rem 2.5rem 2rem;
+  box-sizing: border-box;
+}
+#github-calendar {
+  width: 95%;
+  max-width: 1000px;
+  min-width: 600px;
+  min-height: 340px;
+  margin: 0 auto 1.5rem auto;
+  display: block;
+  padding-bottom: 0;
+}
+@media (max-width: 900px) {
+  section#github.light-card {
+    width: 98vw;
+    min-width: 0;
+    min-height: 320px;
+    padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+  }
+  #github-calendar {
+    min-width: 320px;
+    min-height: 180px;
+  }
+} 

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Portfolio1",
+			"path": "../.."
+		},
+		{
+			"name": "static",
+			"path": "../../../Portfolio/static"
+		}
+	],
+	"settings": {}
+}
