@@ -964,4 +964,12 @@ section#achievements.main-card {
   word-break: break-word;
   hyphens: auto;
   text-align: center;
+}
+.achievement-card .card-title,
+.achievement-card .card-text {
+  color: #23243a;
+}
+[data-theme='dark'] .achievement-card .card-title,
+[data-theme='dark'] .achievement-card .card-text {
+  color: #f3f6fa;
 } 
