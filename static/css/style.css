@@ -822,4 +822,25 @@ section#github.light-card {
 @keyframes skeleton-fade {
   from { opacity: 1; }
   to { opacity: 0.7; }
+}
+
+[data-theme='light'] #skeleton-loader {
+  background: linear-gradient(135deg, #e3f0ff 0%, #ffe3f6 100%);
+}
+[data-theme='light'] .skeleton-navbar,
+[data-theme='light'] .skeleton-section {
+  background: #e3e3ee;
+}
+[data-theme='light'] .skeleton-hero {
+  background: #f6eaff;
+}
+[data-theme='dark'] #skeleton-loader {
+  background: linear-gradient(135deg, #18181c 0%, #23243a 100%);
+}
+[data-theme='dark'] .skeleton-navbar,
+[data-theme='dark'] .skeleton-section {
+  background: #23243a;
+}
+[data-theme='dark'] .skeleton-hero {
+  background: #23243a;
 } 
