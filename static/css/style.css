@@ -916,8 +916,8 @@ section#github.light-card {
 }
 
 section#achievements.main-card {
-  min-height: 800px;
-  height: 800px;
+  min-height: 1100px;
+  height: 1100px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -931,15 +931,15 @@ section#achievements.main-card {
   align-items: stretch;
 }
 .achievement-card {
-  min-height: 650px;
-  max-height: 800px;
+  min-height: 950px;
+  max-height: 1100px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .achievement-card .card-body {
-  min-height: 500px;
+  min-height: 800px;
   height: 100%;
   display: flex;
   flex-direction: column;
