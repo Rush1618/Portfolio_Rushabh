@@ -11,9 +11,9 @@
 ## ✨ Features
 - 🏠 Home, About, Projects, Achievements, Blog, Contact sections
 - 📱 Responsive design with animated gradient and glassmorphism
-- 🟩 GitHub contributions calendar and live commit stats
+- 🟩 GitHub contributions calendar and live commit stats (adaptive to theme)
 - 📝 Blog with Markdown support (Flask-FlatPages)
-- 🌗 Dark/light mode toggle (remembers preference)
+- 🌗 Animated theme toggle switch (sun/moon, clouds/stars, fully responsive and accessible)
 - 🎠 Project and achievement carousels with details modal
 - 🚫 Custom 404 page
 - 📬 Contact form (stores messages in SQLite)
@@ -46,15 +46,19 @@
 ---
 
 ## 🖼️ Screenshots
-| Home | Projects | Achievements | Blog |
-|------|----------|--------------|------|
-| ![Home](static/images/profile.jpg) | ![Projects](static/images/profile.jpg) | ![Achievements](static/images/profile.jpg) | ![Blog](static/images/profile.jpg) |
+| Home | Projects | Achievements | Blog | Theme Toggle |
+|------|----------|--------------|------|-------------|
+| ![Home](static/images/profile.jpg) | ![Projects](static/images/profile.jpg) | ![Achievements](static/images/profile.jpg) | ![Blog](static/images/profile.jpg) | ![Toggle](static/images/theme-toggle-demo.png) |
 
 ---
 
 ## 📝 Customization
 - **Edit your info, projects, achievements:**
   - Open `data.py` and update the variables and lists.
+- **Customize the theme toggle:**
+  - The theme toggle switch is fully animated and adapts to light/dark mode.
+  - To change its style, edit the `.theme-toggle-switch` section in `static/css/style.css`.
+  - The toggle is always accessible: on desktop it appears at the right center, on mobile at the bottom right.
 - **Add blog posts:**
   - Add Markdown files to the `blog/` folder. Use front matter for title, date, summary, and (optionally) featured_image.
 - **Change styles:**
@@ -66,6 +70,13 @@
 
 ## 📚 Documentation
 See [DOCUMENTATION.md](DOCUMENTATION.md) for a detailed, beginner-friendly explanation of the codebase, file structure, and how to edit every part of your website.
+
+---
+
+## 🌗 Theme & Responsiveness
+- The site automatically adapts to light and dark mode, including all cards, text, and the GitHub contributions section.
+- The animated theme toggle switch visually changes between sun/clouds and moon/stars.
+- The toggle is always accessible and moves to the best position for your device.
 
 ---
 
