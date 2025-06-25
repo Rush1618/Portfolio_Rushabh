@@ -64,3 +64,19 @@ CONTACT = {
     'linkedin': 'https://linkedin.com/in/rushabh-singh-22b23a2bb',
     'instagram': 'https://instagram.com/rushabhsingh69'
 } 
+
+# --- Testimonials ---
+# To add a testimonial, append a dictionary to the TESTIMONIALS list below.
+# Example:
+# TESTIMONIALS = [
+#     { 'text': 'Great work!', 'author': 'John Doe', 'role': 'Colleague' },
+#     { 'text': 'Very professional.', 'author': 'Jane Smith', 'role': 'Manager' },
+# ]
+# Currently, there are no testimonials yet.
+TESTIMONIALS = [
+    {
+        'text': 'No testimonials yet. Be the first to add one!',
+        'author': '',
+        'role': ''
+    }
+] 

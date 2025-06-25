@@ -202,34 +202,34 @@
     {% endwith %}
 </section>
 
-<div class="quote-card">I don't just write code , I design solutions that scale, adapt, and empower</div>
-
 <!-- Testimonials Section -->
 <section id="testimonials" class="main-card fade-in">
   <h2 class="mb-4 fw-bold">Testimonials</h2>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <div class="card h-100 p-3">
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>Rushabh is a dedicated developer who always delivers quality work on time. Highly recommended!</p>
-            <footer class="blockquote-footer mt-2">A. Colleague, <cite title="Company">Tech Co.</cite></footer>
-          </blockquote>
+  {% if data.TESTIMONIALS|length == 0 or (data.TESTIMONIALS|length == 1 and not data.TESTIMONIALS[0].author and not data.TESTIMONIALS[0].role) %}
+    <div class="alert alert-info text-center">{{ data.TESTIMONIALS[0].text if data.TESTIMONIALS else 'No testimonials yet.' }}</div>
+  {% else %}
+  <div class="testimonial-slider-container position-relative">
+    <button class="testimonial-scroll-btn left" aria-label="Scroll left">&#8592;</button>
+    <div class="testimonial-slider d-flex flex-row flex-nowrap overflow-auto" tabindex="0">
+      {% for t in data.TESTIMONIALS %}
+        {% if t.author or t.role %}
+        <div class="card h-100 testimonial-card mx-2 flex-shrink-0 fade-in" style="min-width: 270px; max-width: 320px;">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>{{ t.text }}</p>
+              <footer class="blockquote-footer mt-2">{{ t.author }}{% if t.role %}, <cite title="Role">{{ t.role }}</cite>{% endif %}</footer>
+            </blockquote>
+          </div>
         </div>
-      </div>
+        {% endif %}
+      {% endfor %}
     </div>
-    <div class="col">
-      <div class="card h-100 p-3">
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>It was a pleasure working with Rushabh. His problem-solving skills are top-notch.</p>
-            <footer class="blockquote-footer mt-2">B. Professor, <cite title="Institution">Engineering College</cite></footer>
-          </blockquote>
-        </div>
-      </div>
-    </div>
+    <button class="testimonial-scroll-btn right" aria-label="Scroll right">&#8594;</button>
   </div>
+  {% endif %}
 </section>
+
+<div class="quote-card">I don't just write code , I design solutions that scale, adapt, and empower</div>
 
 <footer class="text-center py-4 mt-5">
     <div class="container">
@@ -435,23 +435,23 @@
         modal.show();
       });
     });
-    // Achievement slider scroll logic (circular)
-    const achievementSlider = document.querySelector('.achievement-slider');
-    const achievementLeftBtn = document.querySelector('.achievement-scroll-btn.left');
-    const achievementRightBtn = document.querySelector('.achievement-scroll-btn.right');
-    if (achievementSlider && achievementLeftBtn && achievementRightBtn) {
-      achievementLeftBtn.onclick = () => {
-        if (achievementSlider.scrollLeft === 0) {
-          achievementSlider.scrollLeft = achievementSlider.scrollWidth;
+    // Testimonial slider scroll logic (circular)
+    const testimonialSlider = document.querySelector('.testimonial-slider');
+    const testimonialLeftBtn = document.querySelector('.testimonial-scroll-btn.left');
+    const testimonialRightBtn = document.querySelector('.testimonial-scroll-btn.right');
+    if (testimonialSlider && testimonialLeftBtn && testimonialRightBtn) {
+      testimonialLeftBtn.onclick = () => {
+        if (testimonialSlider.scrollLeft === 0) {
+          testimonialSlider.scrollLeft = testimonialSlider.scrollWidth;
         } else {
-          achievementSlider.scrollBy({left: -320, behavior: 'smooth'});
+          testimonialSlider.scrollBy({left: -320, behavior: 'smooth'});
         }
       };
-      achievementRightBtn.onclick = () => {
-        if (achievementSlider.scrollLeft + achievementSlider.offsetWidth >= achievementSlider.scrollWidth - 10) {
-          achievementSlider.scrollLeft = 0;
+      testimonialRightBtn.onclick = () => {
+        if (testimonialSlider.scrollLeft + testimonialSlider.offsetWidth >= testimonialSlider.scrollWidth - 10) {
+          testimonialSlider.scrollLeft = 0;
         } else {
-          achievementSlider.scrollBy({left: 320, behavior: 'smooth'});
+          testimonialSlider.scrollBy({left: 320, behavior: 'smooth'});
         }
       };
     }
