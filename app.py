@@ -4,6 +4,9 @@ import data
 import os
 from datetime import datetime
 import sqlite3
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key_here'
@@ -57,6 +60,24 @@ def contact_submit():
             c = conn.cursor()
             c.execute('INSERT INTO messages (name, email, message) VALUES (?, ?, ?)', (name, email, message))
             conn.commit()
+        # Send email notification
+        try:
+            sender_email = "mail-projectsmailsender0@gmail.com"
+            sender_password = "fengveihgrbueuvm"  # App password, no spaces
+            receiver_email = "portfoliorushabh@gmail.com"
+            subject = f"New Portfolio Message from {name}"
+            body = f"Name: {name}\nEmail: {email}\nMessage:\n{message}"
+            msg = MIMEMultipart()
+            msg['From'] = sender_email
+            msg['To'] = receiver_email
+            msg['Subject'] = subject
+            msg.attach(MIMEText(body, 'plain'))
+            with smtplib.SMTP('smtp.gmail.com', 587) as server:
+                server.starttls()
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, receiver_email, msg.as_string())
+        except Exception as e:
+            print(f"Email send failed: {e}")
         flash('Thank you! Your message has been received.', 'success')
     else:
         flash('Please fill in all fields.', 'danger')
