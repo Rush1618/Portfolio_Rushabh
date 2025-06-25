@@ -103,6 +103,7 @@
                 <div class="card-footer d-flex justify-content-between bg-transparent border-0">
                     <a href="{{ project.github }}" class="btn btn-outline-dark btn-sm" target="_blank">GitHub</a>
                     <a href="{{ project.demo }}" class="btn btn-outline-primary btn-sm" target="_blank">Demo</a>
+                    <button class="btn btn-outline-secondary btn-sm project-details-btn" data-title="{{ project.title }}" data-description="{{ project.description }}" data-tech="{{ project.tech|join(', ') }}" data-github="{{ project.github }}" data-demo="{{ project.demo }}">Details</button>
                 </div>
             </div>
             {% endfor %}
@@ -194,6 +195,26 @@
         </div>
     </div>
 </footer>
+
+<!-- Project Details Modal -->
+<div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-labelledby="projectDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="projectDetailsModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="projectDetailsDescription"></p>
+        <p><strong>Tech Stack:</strong> <span id="projectDetailsTech"></span></p>
+        <div class="d-flex gap-2 mt-3">
+          <a id="projectDetailsGithub" href="#" class="btn btn-outline-dark btn-sm" target="_blank">GitHub</a>
+          <a id="projectDetailsDemo" href="#" class="btn btn-outline-primary btn-sm" target="_blank">Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
@@ -319,6 +340,17 @@
       .catch(() => {
         document.getElementById('commit-count').textContent = 'Could not load commit stats.';
       });
+    document.querySelectorAll('.project-details-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.getElementById('projectDetailsModalLabel').textContent = this.dataset.title;
+        document.getElementById('projectDetailsDescription').textContent = this.dataset.description;
+        document.getElementById('projectDetailsTech').textContent = this.dataset.tech;
+        document.getElementById('projectDetailsGithub').href = this.dataset.github;
+        document.getElementById('projectDetailsDemo').href = this.dataset.demo;
+        var modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
+        modal.show();
+      });
+    });
 </script>
 </body>
 </html> 
