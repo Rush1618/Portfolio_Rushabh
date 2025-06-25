@@ -15,6 +15,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Montserrat:wght@700;400&family=Poppins:wght@400;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div id="skeleton-loader">
+  <div class="skeleton-navbar"></div>
+  <div class="skeleton-hero"></div>
+  <div class="skeleton-section"></div>
+  <div class="skeleton-section"></div>
+  <div class="skeleton-section"></div>
+</div>
 <div class="bg-blob bg-blob1"></div>
 <div class="bg-blob bg-blob2"></div>
 <div class="bg-blob bg-blob3"></div>
@@ -261,6 +268,10 @@
     }
     window.addEventListener('scroll', fadeInOnScroll);
     window.addEventListener('DOMContentLoaded', fadeInOnScroll);
+    // Hide skeleton loader when page is fully loaded
+    window.addEventListener('load', function() {
+        document.getElementById('skeleton-loader').style.display = 'none';
+    });
 </script>
 </body>
 </html> 
