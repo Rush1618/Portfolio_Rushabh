@@ -58,6 +58,13 @@
   <div class="toggle-track">
     <div class="toggle-bg day"></div>
     <div class="toggle-bg night"></div>
+    <div class="clouds"></div>
+    <div class="stars">
+      <span class="star1"></span>
+      <span class="star2"></span>
+      <span class="star3"></span>
+      <span class="star4"></span>
+    </div>
     <div class="toggle-thumb">
       <div class="icon sun" aria-label="Light mode">☀️</div>
       <div class="icon moon" aria-label="Dark mode">🌙</div>
@@ -277,7 +284,7 @@
         });
     });
     // GitHub Calendar (always show current year)
-    GitHubCalendar("#github-calendar", "rush1618", { responsive: true, summary_text: "", global_stats: false, tooltips: true });
+    GitHubCalendar("#github-calendar", "{{ data.GITHUB_USERNAME }}", { responsive: true, summary_text: "", global_stats: false, tooltips: true });
     // 3D Laptop Model (GLB Loader)
     function createLaptop3D() {
         const container = document.getElementById('laptop-3d');
@@ -387,7 +394,7 @@
         document.getElementById('skeleton-loader').style.display = 'none';
     });
     // Fetch recent commit activity
-    fetch('https://api.github.com/users/rush1618/events/public')
+    fetch('https://api.github.com/users/{{ data.GITHUB_USERNAME }}/events/public')
       .then(response => response.json())
       .then(events => {
         // Count commits per repo in the last 30 days
@@ -413,7 +420,7 @@
         document.getElementById('commit-activity').textContent = 'Could not load commit activity.';
       });
     // Fetch recently created repositories
-    fetch('https://api.github.com/users/rush1618/repos?sort=created&direction=desc')
+    fetch('https://api.github.com/users/{{ data.GITHUB_USERNAME }}/repos?sort=created&direction=desc')
       .then(response => response.json())
       .then(repos => {
         const recentRepos = repos.slice(0, 5).map(repo =>

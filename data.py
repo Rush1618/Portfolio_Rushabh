@@ -6,6 +6,7 @@ TAGLINE = "Turning complex ideas into reliable software."
 BIO = "I'm Rushabh Singh, a passionate developer focused on building scalable and efficient applications."
 PLACE_OF_STUDY = "Thakur ShyamNarayan Engineering College"  # Replace with actual or fetch from LinkedIn
 PROFILE_PIC = "images/profile.jpeg"  # Place your image in /static/images/
+GITHUB_USERNAME = "rush1618"  # Your GitHub username for contributions and activity
 
 PROJECTS = [
     {
