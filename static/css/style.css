@@ -358,15 +358,23 @@ section#github .github-calendar {
 }
 .project-card .btn {
   font-size: 1.08rem;
-  padding: 0.55em 1.5em;
+  padding: 0.55em 2em;
   border-radius: 1.5em;
   margin: 0 0.2em;
-  min-width: 90px;
+  min-width: 110px;
   font-weight: 600;
+  white-space: nowrap;
 }
 .project-card .card-footer {
-  gap: 0.5em;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.project-card .btn {
+  white-space: nowrap;
+  min-width: 100px;
 }
 .project-card img, .project-card .project-img {
   width: 100%;
@@ -476,11 +484,12 @@ section#github .github-calendar {
 
 .project-card .btn {
   font-size: 1.08rem;
-  padding: 0.55em 1.5em;
+  padding: 0.55em 2em;
   border-radius: 1.5em;
   margin: 0 0.2em;
-  min-width: 90px;
+  min-width: 110px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .project-card .card-footer {
