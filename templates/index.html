@@ -146,9 +146,21 @@
     <div>
         {% for post in pages %}
         {% if post.meta.published %}
-        <div class="mb-3">
+        <div class="mb-3 d-flex align-items-center blog-list-item">
+            {% if post.meta.featured_image %}
+            <img src="{{ url_for('static', filename=post.meta.featured_image) }}" alt="Featured image for {{ post.meta.title }}" class="blog-featured-img me-3" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+            {% endif %}
+            <div>
             <a href="{{ url_for('blog_post', path=post.path) }}"><strong>{{ post.meta.title }}</strong></a>
-            <span class="text-muted">{{ post.meta.date }}</span>
+                <span class="text-muted ms-2">{{ post.meta.date }}</span>
+                <div class="blog-summary text-muted" style="font-size: 0.98em;">
+                  {% if post.meta.summary %}
+                    {{ post.meta.summary }}
+                  {% else %}
+                    {{ post.meta.title[:120] ~ ('...' if post.meta.title|length > 120 else '') }}
+                  {% endif %}
+                </div>
+            </div>
         </div>
         {% endif %}
         {% endfor %}
@@ -188,6 +200,33 @@
 </section>
 
 <div class="quote-card">I don't just write code , I design solutions that scale, adapt, and empower</div>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="main-card fade-in">
+  <h2 class="mb-4 fw-bold">Testimonials</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card h-100 p-3">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Rushabh is a dedicated developer who always delivers quality work on time. Highly recommended!</p>
+            <footer class="blockquote-footer mt-2">A. Colleague, <cite title="Company">Tech Co.</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 p-3">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>It was a pleasure working with Rushabh. His problem-solving skills are top-notch.</p>
+            <footer class="blockquote-footer mt-2">B. Professor, <cite title="Institution">Engineering College</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="text-center py-4 mt-5">
     <div class="container">
@@ -407,6 +446,15 @@
         }, { once: true });
       });
     });
+</script>
+
+<!-- Google Analytics (replace G-XXXXXXXXXX with your own ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
 </script>
 </body>
 </html> 
