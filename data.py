@@ -39,10 +39,22 @@ PROJECTS = [
 ]
 
 ACHIEVEMENTS = [
-    "Participated in 1 Hackathon 2025",
-    "Completed 1 NPTEL course ",
-    "Having 11 Certificates",
-    "Proud Student Manager in DLLE in Thakur ShyamNarayan Engineering College",
+    {
+        "title": "Participated in 1 Hackathon 2025",
+        "details": "Participated in a national-level hackathon, collaborated with a team to build an innovative solution, and gained valuable experience in teamwork and problem-solving."
+    },
+    {
+        "title": "Completed 1 NPTEL course",
+        "details": "Successfully completed an NPTEL course, enhancing my knowledge in the subject and earning a certificate."
+    },
+    {
+        "title": "Having 11 Certificates",
+        "details": "Earned 11 certificates in various technical and non-technical domains, showcasing my commitment to continuous learning."
+    },
+    {
+        "title": "Proud Student Manager in DLLE in Thakur ShyamNarayan Engineering College",
+        "details": "Served as a Student Manager in the Department of Lifelong Learning and Extension, organizing events and supporting fellow students."
+    },
     #"Speaker at DEF Tech Conference"
 ]
 

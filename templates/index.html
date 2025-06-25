@@ -114,16 +114,22 @@
 
 <section id="achievements" class="main-card fade-in">
     <h2 class="mb-4 fw-bold">Achievements</h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
-        {% for ach in data.ACHIEVEMENTS[:5] %}
-        <div class="col">
-            <div class="card h-100 achievement-card">
-                <div class="card-body d-flex align-items-center justify-content-center">
-                    <p class="card-text text-center fs-6">{{ ach }}</p>
+    <div class="achievement-slider-container position-relative">
+        <button class="achievement-scroll-btn left" aria-label="Scroll left">&#8592;</button>
+        <div class="achievement-slider d-flex flex-row flex-nowrap overflow-auto" tabindex="0">
+            {% for ach in data.ACHIEVEMENTS %}
+            <div class="card h-100 achievement-card mx-2 flex-shrink-0 fade-in" style="min-width: 270px; max-width: 320px;">
+                <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                    <h5 class="card-title fw-bold">{{ ach.title }}</h5>
+                    <p class="card-text text-center fs-6">{{ ach.details[:60] ~ ('...' if ach.details|length > 60 else '') }}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-center bg-transparent border-0">
+                    <button class="btn btn-outline-secondary btn-sm achievement-details-btn" data-achievement-title="{{ ach.title }}" data-achievement-details="{{ ach.details }}">Details</button>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <button class="achievement-scroll-btn right" aria-label="Scroll right">&#8594;</button>
     </div>
 </section>
 
@@ -272,13 +278,25 @@
         camera.position.z = 5;
     }
     createLaptop3D();
-    // Project slider scroll logic
+    // Project slider scroll logic (circular)
     const slider = document.querySelector('.project-slider');
     const leftBtn = document.querySelector('.project-scroll-btn.left');
     const rightBtn = document.querySelector('.project-scroll-btn.right');
     if (slider && leftBtn && rightBtn) {
-        leftBtn.onclick = () => slider.scrollBy({left: -320, behavior: 'smooth'});
-        rightBtn.onclick = () => slider.scrollBy({left: 320, behavior: 'smooth'});
+      leftBtn.onclick = () => {
+        if (slider.scrollLeft === 0) {
+          slider.scrollLeft = slider.scrollWidth;
+        } else {
+          slider.scrollBy({left: -320, behavior: 'smooth'});
+        }
+      };
+      rightBtn.onclick = () => {
+        if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
+          slider.scrollLeft = 0;
+        } else {
+          slider.scrollBy({left: 320, behavior: 'smooth'});
+        }
+      };
     }
     // Theme toggle logic
     function setTheme(theme) {
@@ -349,6 +367,44 @@
         document.getElementById('projectDetailsDemo').href = this.dataset.demo;
         var modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
         modal.show();
+      });
+    });
+    // Achievement slider scroll logic (circular)
+    const achievementSlider = document.querySelector('.achievement-slider');
+    const achievementLeftBtn = document.querySelector('.achievement-scroll-btn.left');
+    const achievementRightBtn = document.querySelector('.achievement-scroll-btn.right');
+    if (achievementSlider && achievementLeftBtn && achievementRightBtn) {
+      achievementLeftBtn.onclick = () => {
+        if (achievementSlider.scrollLeft === 0) {
+          achievementSlider.scrollLeft = achievementSlider.scrollWidth;
+        } else {
+          achievementSlider.scrollBy({left: -320, behavior: 'smooth'});
+        }
+      };
+      achievementRightBtn.onclick = () => {
+        if (achievementSlider.scrollLeft + achievementSlider.offsetWidth >= achievementSlider.scrollWidth - 10) {
+          achievementSlider.scrollLeft = 0;
+        } else {
+          achievementSlider.scrollBy({left: 320, behavior: 'smooth'});
+        }
+      };
+    }
+    // Achievement details modal logic
+    const achievementDetailsBtns = document.querySelectorAll('.achievement-details-btn');
+    achievementDetailsBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.getElementById('projectDetailsModalLabel').textContent = this.dataset.achievementTitle;
+        document.getElementById('projectDetailsDescription').textContent = this.dataset.achievementDetails;
+        document.getElementById('projectDetailsTech').textContent = '';
+        document.getElementById('projectDetailsGithub').style.display = 'none';
+        document.getElementById('projectDetailsDemo').style.display = 'none';
+        var modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
+        modal.show();
+        // Restore buttons after modal closes
+        document.getElementById('projectDetailsModal').addEventListener('hidden.bs.modal', function() {
+          document.getElementById('projectDetailsGithub').style.display = '';
+          document.getElementById('projectDetailsDemo').style.display = '';
+        }, { once: true });
       });
     });
 </script>
