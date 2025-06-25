@@ -951,4 +951,17 @@ section#achievements.main-card {
 }
 .achievement-slider {
   scrollbar-width: none;
+}
+.achievement-card .card-title {
+  font-size: 2rem;
+  word-break: break-word;
+  hyphens: auto;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.achievement-card .card-text {
+  font-size: 1.1rem;
+  word-break: break-word;
+  hyphens: auto;
+  text-align: center;
 } 
