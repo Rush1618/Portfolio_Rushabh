@@ -766,4 +766,15 @@ section#github.light-card {
 .fade-in.visible {
   opacity: 1;
   transform: none;
+}
+
+:focus {
+  outline: 2.5px solid #36d1c4 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px #ffe3f6;
+}
+.theme-toggle-switch:focus, .theme-toggle-switch a:focus {
+  outline: 2.5px solid #ff5e62 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px #e3f0ff;
 } 
