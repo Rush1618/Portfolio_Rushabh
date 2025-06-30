@@ -226,13 +226,13 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://portfolio-rushabh.onrender.com/#contact">
       <div class="mb-3">
-        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+        <input type="text" name="name" class="form-control" placeholder="Your Name" required pattern="^[A-Za-z\s]{2,50}$" title="Name should only contain letters and spaces (2-50 characters)">
       </div>
       <div class="mb-3">
         <input type="email" name="email" class="form-control" placeholder="Your Email" required>
       </div>
       <div class="mb-3">
-        <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
+        <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required minlength="10"></textarea>
       </div>
       <button type="submit" class="btn btn-outline-primary">Send Message</button>
     </form>
