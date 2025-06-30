@@ -430,16 +430,17 @@
         }
       };
       const t = themes[theme] || themes.dark;
+      const cacheBust = Date.now();
       document.getElementById("gh-stats").src =
-        `https://github-readme-stats.vercel.app/api?username=Rush1618&show_icons=true&theme=${t.stats}`;
+        `https://github-readme-stats.vercel.app/api?username=Rush1618&show_icons=true&theme=${t.stats}&t=${cacheBust}`;
       document.getElementById("gh-streak").src =
-        `https://github-readme-streak-stats.herokuapp.com/?user=Rush1618&theme=${t.streak}`;
+        `https://github-readme-streak-stats.herokuapp.com/?user=Rush1618&theme=${t.streak}&t=${cacheBust}`;
       document.getElementById("gh-activity").src =
-        `https://github-readme-activity-graph.vercel.app/graph?username=Rush1618&theme=${t.activity}`;
+        `https://github-readme-activity-graph.vercel.app/graph?username=Rush1618&theme=${t.activity}&t=${cacheBust}`;
       document.getElementById("gh-langs").src =
-        `https://github-readme-stats.vercel.app/api/top-langs/?username=Rush1618&layout=compact&theme=${t.langs}`;
+        `https://github-readme-stats.vercel.app/api/top-langs/?username=Rush1618&layout=compact&theme=${t.langs}&t=${cacheBust}`;
       document.getElementById("gh-calendar").src =
-        `https://ghchart.rshah.org/${t.calendar}/Rush1618`;
+        `https://ghchart.rshah.org/${t.calendar}/Rush1618?${cacheBust}`;
     }
     document.addEventListener("DOMContentLoaded", function() {
       updateGitHubStatsTheme(getTheme());
