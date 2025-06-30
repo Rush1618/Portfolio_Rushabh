@@ -1550,4 +1550,208 @@ section#contact.main-card {
   opacity: 0 !important;
   transition: opacity 0.5s !important;
 }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 10px;
+  background: #232526;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 10000;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: left 0.2s;
+}
+.skip-link:focus {
+  left: 10px;
+  outline: 3px solid #36d1c4;
+  box-shadow: 0 0 0 3px #ff5e62;
+}
+button:focus, .btn:focus, a:focus, input:focus, textarea:focus {
+  outline: 3px solid #36d1c4 !important;
+  box-shadow: 0 0 0 3px #ff5e62 !important;
+}
+
+/* 1. Glassmorphism */
+.main-card, .modal-content {
+  background: rgba(255,255,255,0.18);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.28);
+}
+[data-theme='dark'] .main-card, [data-theme='dark'] .modal-content {
+  background: rgba(35,36,53,0.72);
+  border: 1px solid rgba(54,209,196,0.18);
+}
+.navbar {
+  background: rgba(255,255,255,0.72) !important;
+  backdrop-filter: blur(10px) saturate(120%);
+  border-bottom: 1px solid rgba(54,209,196,0.12);
+}
+[data-theme='dark'] .navbar {
+  background: rgba(35,36,53,0.92) !important;
+  border-bottom: 1px solid rgba(54,209,196,0.18);
+}
+
+/* 2. Gradient & Animated Buttons */
+.btn, .btn-primary, .btn-outline-primary {
+  background: linear-gradient(90deg, #ff5e62 0%, #36d1c4 100%);
+  color: #fff !important;
+  border: none;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.3s;
+  box-shadow: 0 2px 8px 0 rgba(54,209,196,0.08);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.btn:hover, .btn:focus, .btn-primary:hover, .btn-outline-primary:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 6px 24px 0 rgba(255,94,98,0.18);
+  background: linear-gradient(90deg, #36d1c4 0%, #ff5e62 100%);
+}
+
+/* 3. Animated Underline for Nav Links */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.2s;
+}
+.nav-link::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff5e62 0%, #36d1c4 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  border-radius: 2px;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* 4. Card Hover Animations */
+.project-card, .achievement-card, .testimonial-card {
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.project-card:hover, .achievement-card:hover, .testimonial-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px 0 rgba(54,209,196,0.18);
+  z-index: 2;
+}
+
+/* 5. Modern Typography */
+body, .main-card, .modal-content {
+  font-family: 'Inter', 'Poppins', 'Montserrat', 'Space Grotesk', Arial, sans-serif;
+  line-height: 1.7;
+  font-size: 1.08rem;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', 'Montserrat', 'Poppins', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* 6. Scroll-to-Top Button */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  background: linear-gradient(90deg, #36d1c4 0%, #ff5e62 100%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 16px 0 rgba(54,209,196,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.2s;
+}
+#scrollToTopBtn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1.08);
+}
+#scrollToTopBtn:focus {
+  outline: 3px solid #36d1c4;
+  box-shadow: 0 0 0 3px #ff5e62;
+}
+
+/* 7. Custom Cursor & Animated Link Underline */
+body {
+  cursor: url('https://cdn.jsdelivr.net/gh/saadeghi/daisyui@latest/src/cursor/cursor-pointer.svg'), auto;
+}
+a, button, .btn {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
+}
+a:not(.nav-link):hover::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, #ff5e62 0%, #36d1c4 100%);
+  border-radius: 2px;
+  animation: underlineGrow 0.3s forwards;
+}
+@keyframes underlineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* 8. Animated Hero Background */
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #232526 0%, #414345 100%);
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -40%; left: -40%; width: 180%; height: 180%;
+  background: radial-gradient(circle at 60% 40%, #36d1c4 0%, transparent 60%),
+              radial-gradient(circle at 30% 70%, #ff5e62 0%, transparent 70%);
+  opacity: 0.18;
+  animation: heroBgMove 12s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes heroBgMove {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.1) translate(40px, 30px); }
+}
+.hero-card > * { position: relative; z-index: 1; }
+
+/* 9. Spacing & Readability */
+section, .main-card {
+  margin-bottom: 2.5rem;
+  padding: 2.2rem 1.5rem;
+}
+@media (min-width: 768px) {
+  section, .main-card { padding: 2.8rem 2.5rem; }
+}
+
+/* 10. SVG Social Icon Styles */
+.social-icon {
+  width: 1.8em;
+  height: 1.8em;
+  vertical-align: middle;
+  margin-right: 0.5em;
+  fill: currentColor;
+  transition: fill 0.2s;
+}
+.social-link:hover .social-icon {
+  fill: #36d1c4;
+}
   

@@ -24,6 +24,7 @@
     <link rel="canonical" href="https://portfolio-rushabh.onrender.com/">
 </head>
 <body>
+<a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
 <!-- Modern Skeleton Loader -->
 <div id="skeleton-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2000;background:linear-gradient(135deg,#e3f0ff 0%,#ffe3f6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s;">
   <div style="display:flex;flex-direction:column;align-items:center;gap:2rem;width:100vw;max-width:600px;">
@@ -79,7 +80,7 @@
     </div>
   </nav>
 </header>
-<main role="main">
+<main role="main" id="main-content">
 <!-- Animated Floating Theme Toggle Switch -->
 <div class="theme-toggle-switch" id="themeToggleSwitch" title="Toggle Light/Dark Mode" aria-label="Toggle light or dark theme" tabindex="0" role="button">
   <div class="toggle-track">
@@ -104,10 +105,10 @@
 <section id="home" class="hero-card main-card text-center d-flex flex-column align-items-center justify-content-center fade-in" style="background: linear-gradient(120deg, #232526 0%, #414345 100%); color: #fff; box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);">
   <div class="row w-100 align-items-center flex-column-reverse flex-md-row" style="min-height: 340px;">
     <div class="col-12 col-md-6 d-flex flex-column align-items-center align-items-md-start justify-content-center text-center text-md-start py-3">
-      <h1 class="display-3 fw-bold mb-2" style="letter-spacing:2px; color: #fff;">
+      <h1 class="display-3 fw-bold mb-2" style="letter-spacing:2px; color: #fff; font-family: 'Space Grotesk', 'Montserrat', 'Poppins', Arial, sans-serif;">
         Hi, I'm <span style="color:#ff5e62;">{{ data.NAME }}</span>
       </h1>
-      <h3 class="fw-semibold mb-3" style="color: #36d1c4;">{{ data.ROLE }}</h3>
+      <h3 class="fw-semibold mb-3" style="color: #36d1c4; font-family: 'Space Grotesk', 'Montserrat', 'Poppins', Arial, sans-serif;">{{ data.ROLE }}</h3>
       <p class="lead mb-4" style="color: #e0eafc;">{{ data.TAGLINE }}</p>
       <a href="#contact" class="btn btn-lg mt-2 px-4 py-2" style="background: linear-gradient(90deg, #ff5e62 0%, #36d1c4 100%); color: #fff; border: none;">Contact Me</a>
     </div>
@@ -219,10 +220,19 @@
 <section id="contact" class="main-card fade-in">
     <h2 class="mb-4 fw-bold">Contact</h2>
     <ul class="list-unstyled fs-5">
-        <li><strong>Email:</strong> <a href="mailto:{{ data.CONTACT.email }}">{{ data.CONTACT.email }}</a></li>
+        <li><strong>Email:</strong> <a href="mailto:{{ data.CONTACT.email }}" class="social-link" aria-label="Email">
+          <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 13.065l-8.485-6.065h16.97l-8.485 6.065zm8.485-8.065h-16.97c-1.104 0-2 .896-2 2v12c0 1.104.896 2 2 2h16.97c1.104 0 2-.896 2-2v-12c0-1.104-.896-2-2-2zm0 14h-16.97v-10.065l8.485 6.065 8.485-6.065v10.065z"/></svg>
+          {{ data.CONTACT.email }}
+        </a></li>
         <li><strong>Phone:</strong> <a href="tel:{{ data.CONTACT.phone }}">{{ data.CONTACT.phone }}</a></li>
-        <li><strong>LinkedIn:</strong> <a href="{{ data.CONTACT.linkedin }}" target="_blank">{{ data.CONTACT.linkedin }}</a></li>
-        <li><strong>Instagram:</strong> <a href="{{ data.CONTACT.instagram }}" target="_blank">{{ data.CONTACT.instagram }}</a></li>
+        <li><strong>LinkedIn:</strong> <a href="{{ data.CONTACT.linkedin }}" class="social-link" target="_blank" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+          {{ data.CONTACT.linkedin }}
+        </a></li>
+        <li><strong>Instagram:</strong> <a href="{{ data.CONTACT.instagram }}" class="social-link" target="_blank" aria-label="Instagram">
+          <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.012-4.947.07-1.276.058-2.687.334-3.678 1.325-.991.991-1.267 2.402-1.325 3.678-.058 1.28-.07 1.688-.07 4.947s.012 3.667.07 4.947c.058 1.276.334 2.687 1.325 3.678.991.991 2.402 1.267 3.678 1.325 1.28.058 1.688.07 4.947.07s3.667-.012 4.947-.07c1.276-.058 2.687-.334 3.678-1.325.991-.991 1.267-2.402 1.325-3.678.058-1.28.07-1.688.07-4.947s-.012-3.667-.07-4.947c-.058-1.276-.334-2.687-1.325-3.678-.991-.991-2.402-1.267-3.678-1.325-1.28-.058-1.688-.07-4.947-.07zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          {{ data.CONTACT.instagram }}
+        </a></li>
     </ul>
     <form action="https://formsubmit.co/portfoliorushabh@gmail.com" method="POST" class="mt-4" id="contactForm">
       <input type="hidden" name="_captcha" value="false">
@@ -284,23 +294,32 @@
 <footer class="text-center py-4 mt-5" role="contentinfo">
     <div class="container">
         <div class="mb-2">
-            <a href="{{ data.CONTACT.linkedin }}" class="me-2" target="_blank">LinkedIn</a>
-            <a href="{{ data.CONTACT.instagram }}" class="me-2" target="_blank">Instagram</a>
-            <a href="mailto:{{ data.CONTACT.email }}" class="me-2">Email</a>
+            <a href="{{ data.CONTACT.linkedin }}" class="me-2 social-link" target="_blank" aria-label="LinkedIn">
+              <svg class="social-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.841-1.563 3.039 0 3.6 2.001 3.6 4.601v5.595z"/></svg>
+            </a>
+            <a href="{{ data.CONTACT.instagram }}" class="me-2 social-link" target="_blank" aria-label="Instagram">
+              <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.012-4.947.07-1.276.058-2.687.334-3.678 1.325-.991.991-1.267 2.402-1.325 3.678-.058 1.28-.07 1.688-.07 4.947s.012 3.667.07 4.947c.058 1.276.334 2.687 1.325 3.678.991.991 2.402 1.267 3.678 1.325 1.28.058 1.688.07 4.947.07s3.667-.012 4.947-.07c1.276-.058 2.687-.334 3.678-1.325.991-.991 1.267-2.402 1.325-3.678.058-1.28.07-1.688.07-4.947s-.012-3.667-.07-4.947c-.058-1.276-.334-2.687-1.325-3.678-.991-.991-2.402-1.267-3.678-1.325-1.28-.058-1.688-.07-4.947-.07zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="mailto:{{ data.CONTACT.email }}" class="me-2 social-link" aria-label="Email">
+              <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 13.065l-8.485-6.065h16.97l-8.485 6.065zm8.485-8.065h-16.97c-1.104 0-2 .896-2 2v12c0 1.104.896 2 2 2h16.97c1.104 0 2-.896 2-2v-12c0-1.104-.896-2-2-2zm0 14h-16.97v-10.065l8.485 6.065 8.485-6.065v10.065z"/></svg>
+            </a>
         </div>
         <div>
             &copy; {{ data.NAME }} {{ current_year }}
         </div>
     </div>
 </footer>
+<button id="scrollToTopBtn" aria-label="Scroll to top" title="Scroll to top">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
 
 <!-- Project Details Modal -->
-<div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-labelledby="projectDetailsModalLabel" aria-hidden="true">
+<div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-labelledby="projectDetailsModalLabel" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="projectDetailsModalLabel"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close modal"></button>
       </div>
       <div class="modal-body">
         <p id="projectDetailsDescription"></p>
@@ -453,6 +472,65 @@
         setTimeout(() => updateGitHubStatsTheme(getTheme()), 100);
       });
     });
+    // Modal accessibility: trap focus and close on Escape
+    (function() {
+      var modal = document.getElementById('projectDetailsModal');
+      if (!modal) return;
+      var focusableSelectors = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      var lastFocusedElement;
+      modal.addEventListener('show.bs.modal', function () {
+        lastFocusedElement = document.activeElement;
+        setTimeout(function() {
+          var focusables = modal.querySelectorAll(focusableSelectors);
+          if (focusables.length) focusables[0].focus();
+        }, 200);
+        document.addEventListener('keydown', trapTab);
+        document.addEventListener('keydown', closeOnEscape);
+      });
+      modal.addEventListener('hidden.bs.modal', function () {
+        document.removeEventListener('keydown', trapTab);
+        document.removeEventListener('keydown', closeOnEscape);
+        if (lastFocusedElement) lastFocusedElement.focus();
+      });
+      function trapTab(e) {
+        if (e.key !== 'Tab') return;
+        var focusables = modal.querySelectorAll(focusableSelectors);
+        if (!focusables.length) return;
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+      function closeOnEscape(e) {
+        if (e.key === 'Escape') {
+          var closeBtn = modal.querySelector('.btn-close');
+          if (closeBtn) closeBtn.click();
+        }
+      }
+    })();
+    // Scroll-to-top button logic
+    (function() {
+      var btn = document.getElementById('scrollToTopBtn');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
 </script>
 
 <!-- Google Analytics (replace G-XXXXXXXXXX with your own ID) -->
