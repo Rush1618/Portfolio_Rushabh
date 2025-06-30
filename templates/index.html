@@ -222,7 +222,9 @@
         <li><strong>LinkedIn:</strong> <a href="{{ data.CONTACT.linkedin }}" target="_blank">{{ data.CONTACT.linkedin }}</a></li>
         <li><strong>Instagram:</strong> <a href="{{ data.CONTACT.instagram }}" target="_blank">{{ data.CONTACT.instagram }}</a></li>
     </ul>
-    <form action="/contact" method="POST" class="mt-4" id="contactForm">
+    <form action="https://formsubmit.co/portfoliorushabh@gmail.com" method="POST" class="mt-4" id="contactForm">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://portfolio-rushabh.onrender.com/#contact">
       <div class="mb-3">
         <input type="text" name="name" class="form-control" placeholder="Your Name" required>
       </div>
