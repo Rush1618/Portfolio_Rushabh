@@ -24,13 +24,38 @@
     <link rel="canonical" href="https://portfolio-rushabh.onrender.com/">
 </head>
 <body>
-<div id="skeleton-loader">
-  <div class="skeleton-navbar"></div>
-  <div class="skeleton-hero"></div>
-  <div class="skeleton-section"></div>
-  <div class="skeleton-section"></div>
-  <div class="skeleton-section"></div>
+<!-- Modern Skeleton Loader -->
+<div id="skeleton-loader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2000;background:linear-gradient(135deg,#e3f0ff 0%,#ffe3f6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:2rem;width:100vw;max-width:600px;">
+    <div class="skeleton-navbar" style="width:90vw;height:56px;background:#e3e3ee;border-radius:0 0 18px 18px;box-shadow:0 2px 12px rgba(31,38,135,0.06);"></div>
+    <div class="skeleton-hero shimmer" style="width:90vw;max-width:900px;height:120px;background:#f6eaff;border-radius:1.5rem;margin-bottom:16px;"></div>
+    <div class="skeleton-section shimmer" style="width:90vw;max-width:900px;height:80px;background:#e3e3ee;border-radius:1.5rem;margin-bottom:12px;"></div>
+    <div class="skeleton-section shimmer" style="width:90vw;max-width:900px;height:80px;background:#e3e3ee;border-radius:1.5rem;margin-bottom:12px;"></div>
+    <div class="skeleton-section shimmer" style="width:90vw;max-width:900px;height:80px;background:#e3e3ee;border-radius:1.5rem;margin-bottom:12px;"></div>
+    <div class="spinner-border text-primary" role="status" style="width:3rem;height:3rem;"><span class="visually-hidden">Loading...</span></div>
+  </div>
 </div>
+<style>
+@keyframes shimmer {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #e3e3ee 25%, #f6eaff 50%, #e3e3ee 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+[data-theme='dark'] #skeleton-loader {
+  background: linear-gradient(135deg,#18181c 0%,#23243a 100%);
+}
+[data-theme='dark'] .skeleton-navbar,
+[data-theme='dark'] .skeleton-section {
+  background: #23243a !important;
+}
+[data-theme='dark'] .skeleton-hero {
+  background: #23243a !important;
+}
+</style>
 <div class="bg-blob bg-blob1"></div>
 <div class="bg-blob bg-blob2"></div>
 <div class="bg-blob bg-blob3"></div>
@@ -110,7 +135,6 @@
                 <div class="card-footer d-flex justify-content-between bg-transparent border-0">
                     <a href="{{ project.github }}" class="btn btn-outline-dark btn-sm" target="_blank">GitHub</a>
                     <a href="{{ project.demo }}" class="btn btn-outline-primary btn-sm" target="_blank">Demo</a>
-                    <button class="btn btn-outline-secondary btn-sm project-details-btn" data-title="{{ project.title }}" data-description="{{ project.description }}" data-tech="{{ project.tech|join(', ') }}" data-github="{{ project.github }}" data-demo="{{ project.demo }}">Details</button>
                 </div>
             </div>
             {% endfor %}
@@ -121,33 +145,15 @@
 
 <section id="achievements" class="main-card fade-in">
     <h2 class="mb-4 fw-bold">Achievements</h2>
-    <div class="achievement-slider-container position-relative">
-        <button class="achievement-scroll-btn left" aria-label="Scroll left">&#8592;</button>
-        <div class="achievement-slider d-flex flex-row flex-nowrap overflow-auto" tabindex="0">
+    <div class="achievement-list w-100 d-flex flex-column gap-3">
             {% for ach in data.ACHIEVEMENTS %}
-            <div class="card h-100 achievement-card mx-2 flex-shrink-0 fade-in" style="min-width: 270px; max-width: 320px;">
+        <div class="card achievement-card w-100 fade-in" style="max-width: 100%; margin: 0 auto;">
                 <div class="card-body d-flex flex-column align-items-center justify-content-center">
                     <h5 class="card-title fw-bold">{{ ach.title }}</h5>
-                    <p class="card-text text-center fs-6">{{ ach.details[:60] ~ ('...' if ach.details|length > 60 else '') }}</p>
-                </div>
-                <div class="card-footer d-flex justify-content-center bg-transparent border-0">
-                    <button class="btn btn-outline-secondary btn-sm achievement-details-btn" data-achievement-title="{{ ach.title }}" data-achievement-details="{{ ach.details }}">Details</button>
-                </div>
+                <p class="card-text text-center fs-6">{{ ach.details }}</p>
             </div>
-            {% endfor %}
         </div>
-        <button class="achievement-scroll-btn right" aria-label="Scroll right">&#8594;</button>
-    </div>
-</section>
-
-<section id="github" class="main-card light-card fade-in">
-    <h2 class="mb-4 fw-bold">GitHub Contributions & Activity</h2>
-    <div id="github-calendar"></div>
-    <div id="github-activity" class="mt-4">
-      <h4>Recent Commit Activity</h4>
-      <div id="commit-activity">Loading commit activity...</div>
-      <h4 class="mt-4">Recently Created Repositories</h4>
-      <div id="created-repos">Loading repositories...</div>
+        {% endfor %}
     </div>
 </section>
 
@@ -176,6 +182,36 @@
         {% endfor %}
     </div>
     <a href="{{ url_for('blog') }}" class="btn btn-outline-secondary mt-2">View All Posts</a>
+</section>
+
+<!-- GitHub Contributions & Activity Section (Calendar Only) -->
+<section id="github-stats" style="text-align:center; padding: 20px;">
+  <h2>📊 My GitHub Stats</h2>
+
+  <!-- GitHub Stats Card -->
+  <img src="https://github-readme-stats.vercel.app/api?username=Rush1618&show_icons=true&theme=radical" 
+       style="max-width: 100%; height: auto; margin: 10px 0;" 
+       alt="GitHub Stats" />
+
+  <!-- GitHub Streak -->
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Rush1618&theme=tokyonight" 
+       style="max-width: 100%; height: auto; margin: 10px 0;" 
+       alt="GitHub Streak" />
+
+  <!-- GitHub Activity Graph -->
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Rush1618&theme=github-compact" 
+       style="max-width: 100%; height: auto; margin: 10px 0;" 
+       alt="GitHub Contribution Graph" />
+
+  <!-- GitHub Top Languages -->
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rush1618&layout=compact&theme=radical" 
+       style="max-width: 100%; height: auto; margin: 10px 0;" 
+       alt="Top Languages" />
+
+  <!-- GitHub Contributions Calendar -->
+  <img src="https://ghchart.rshah.org/Rush1618"
+       style="max-width: 100%; height: auto; margin: 10px 0;"
+       alt="GitHub Contributions Calendar" />
 </section>
 
 <section id="contact" class="main-card fade-in">
@@ -221,12 +257,12 @@
       {% for t in data.TESTIMONIALS %}
         {% if t.author or t.role %}
         <div class="card h-100 testimonial-card mx-2 flex-shrink-0 fade-in" style="min-width: 270px; max-width: 320px;">
-          <div class="card-body">
-            <blockquote class="blockquote mb-0">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
               <p>{{ t.text }}</p>
               <footer class="blockquote-footer mt-2">{{ t.author }}{% if t.role %}, <cite title="Role">{{ t.role }}</cite>{% endif %}</footer>
-            </blockquote>
-          </div>
+          </blockquote>
+        </div>
         </div>
         {% endif %}
       {% endfor %}
@@ -271,8 +307,6 @@
   </div>
 </div>
 
-<script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
 <script>
     // Smooth scrolling
     document.querySelectorAll('a.nav-link').forEach(link => {
@@ -283,70 +317,6 @@
             }
         });
     });
-    // GitHub Calendar (always show current year)
-    GitHubCalendar("#github-calendar", "{{ data.GITHUB_USERNAME }}", { responsive: true, summary_text: "", global_stats: false, tooltips: true });
-    // 3D Laptop Model (GLB Loader)
-    function createLaptop3D() {
-        const container = document.getElementById('laptop-3d');
-        if (!container) return;
-        // Clean up previous content
-        container.innerHTML = '';
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, container.offsetWidth/container.offsetHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(container.offsetWidth, container.offsetHeight);
-        container.appendChild(renderer.domElement);
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-        scene.add(ambientLight);
-        const pointLight = new THREE.PointLight(0xffffff, 1.2, 20);
-        pointLight.position.set(5, 10, 7.5);
-        scene.add(pointLight);
-        // Load GLB model
-        const loaderScript = document.createElement('script');
-        loaderScript.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js';
-        loaderScript.onload = function() {
-            const loader = new THREE.GLTFLoader();
-            loader.load('/static/models/cyber.glb', function(gltf) {
-                const model = gltf.scene;
-                model.scale.set(2.2, 2.2, 2.2);
-                model.position.y = -0.7;
-                scene.add(model);
-                // Animate
-                function animate() {
-                    requestAnimationFrame(animate);
-                    model.rotation.y += 0.01;
-                    renderer.render(scene, camera);
-                }
-                animate();
-            }, undefined, function(error) {
-                console.error('Error loading 3D model:', error);
-            });
-        };
-        document.body.appendChild(loaderScript);
-        camera.position.z = 5;
-    }
-    createLaptop3D();
-    // Project slider scroll logic (circular)
-    const slider = document.querySelector('.project-slider');
-    const leftBtn = document.querySelector('.project-scroll-btn.left');
-    const rightBtn = document.querySelector('.project-scroll-btn.right');
-    if (slider && leftBtn && rightBtn) {
-      leftBtn.onclick = () => {
-        if (slider.scrollLeft === 0) {
-          slider.scrollLeft = slider.scrollWidth;
-        } else {
-          slider.scrollBy({left: -320, behavior: 'smooth'});
-        }
-      };
-      rightBtn.onclick = () => {
-        if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
-          slider.scrollLeft = 0;
-        } else {
-          slider.scrollBy({left: 320, behavior: 'smooth'});
-        }
-      };
-    }
     // Theme toggle logic
     function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
@@ -393,55 +363,6 @@
     window.addEventListener('load', function() {
         document.getElementById('skeleton-loader').style.display = 'none';
     });
-    // Fetch recent commit activity
-    fetch('https://api.github.com/users/{{ data.GITHUB_USERNAME }}/events/public')
-      .then(response => response.json())
-      .then(events => {
-        // Count commits per repo in the last 30 days
-        const now = new Date();
-        const days30 = 1000 * 60 * 60 * 24 * 30;
-        const repoCommits = {};
-        let totalCommits = 0;
-        events.forEach(e => {
-          if (e.type === 'PushEvent' && (now - new Date(e.created_at) < days30)) {
-            const repo = e.repo.name;
-            const count = e.payload.commits.length;
-            repoCommits[repo] = (repoCommits[repo] || 0) + count;
-            totalCommits += count;
-          }
-        });
-        const repoList = Object.entries(repoCommits).map(([repo, count]) =>
-          `<li><a href="https://github.com/${repo}" target="_blank">${repo}</a>: <strong>${count}</strong> commit${count > 1 ? 's' : ''}</li>`
-        ).join('');
-        document.getElementById('commit-activity').innerHTML =
-          `<p>Created <strong>${totalCommits}</strong> commit${totalCommits !== 1 ? 's' : ''} in <strong>${Object.keys(repoCommits).length}</strong> repos (last 30 days):</p><ul>${repoList}</ul>`;
-      })
-      .catch(() => {
-        document.getElementById('commit-activity').textContent = 'Could not load commit activity.';
-      });
-    // Fetch recently created repositories
-    fetch('https://api.github.com/users/{{ data.GITHUB_USERNAME }}/repos?sort=created&direction=desc')
-      .then(response => response.json())
-      .then(repos => {
-        const recentRepos = repos.slice(0, 5).map(repo =>
-          `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a> <span class="text-muted">(${repo.created_at.slice(0,10)})</span></li>`
-        ).join('');
-        document.getElementById('created-repos').innerHTML = `<ul>${recentRepos}</ul>`;
-      })
-      .catch(() => {
-        document.getElementById('created-repos').textContent = 'Could not load repositories.';
-      });
-    document.querySelectorAll('.project-details-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.getElementById('projectDetailsModalLabel').textContent = this.dataset.title;
-        document.getElementById('projectDetailsDescription').textContent = this.dataset.description;
-        document.getElementById('projectDetailsTech').textContent = this.dataset.tech;
-        document.getElementById('projectDetailsGithub').href = this.dataset.github;
-        document.getElementById('projectDetailsDemo').href = this.dataset.demo;
-        var modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
-        modal.show();
-      });
-    });
     // Testimonial slider scroll logic (circular)
     const testimonialSlider = document.querySelector('.testimonial-slider');
     const testimonialLeftBtn = document.querySelector('.testimonial-scroll-btn.left');
@@ -462,24 +383,6 @@
         }
       };
     }
-    // Achievement details modal logic
-    const achievementDetailsBtns = document.querySelectorAll('.achievement-details-btn');
-    achievementDetailsBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.getElementById('projectDetailsModalLabel').textContent = this.dataset.achievementTitle;
-        document.getElementById('projectDetailsDescription').textContent = this.dataset.achievementDetails;
-        document.getElementById('projectDetailsTech').textContent = '';
-        document.getElementById('projectDetailsGithub').style.display = 'none';
-        document.getElementById('projectDetailsDemo').style.display = 'none';
-        var modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
-        modal.show();
-        // Restore buttons after modal closes
-        document.getElementById('projectDetailsModal').addEventListener('hidden.bs.modal', function() {
-          document.getElementById('projectDetailsGithub').style.display = '';
-          document.getElementById('projectDetailsDemo').style.display = '';
-        }, { once: true });
-      });
-    });
 </script>
 
 <!-- Google Analytics (replace G-XXXXXXXXXX with your own ID) -->

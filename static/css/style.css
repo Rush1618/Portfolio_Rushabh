@@ -1,6 +1,212 @@
-html {
-  font-size: clamp(14px, 1.5vw, 18px);
+/* --- MOBILE-FIRST LAYOUT REFACTOR (FULL REPLACEMENT) --- */
+
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: 'Poppins', 'Space Grotesk', 'Inter', 'Montserrat', Arial, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+section, .main-card, .quote-card, .light-card {
+  width: 98vw;
+  max-width: 100vw;
+  min-width: 0;
+  margin: 1.2rem auto;
+  padding: 1.1rem 0.5rem;
+  border-radius: 0.7rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 700px) {
+  section, .main-card, .quote-card, .light-card {
+    max-width: 900px;
+    padding: 2rem 2rem;
+  }
+}
+
+/* Navbar: stack vertically on mobile */
+.navbar-nav {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+@media (min-width: 700px) {
+  .navbar-nav {
+    flex-direction: row;
+    gap: 1.5rem;
+    width: auto;
+  }
+}
+
+/* Card grid for all sections */
+.project-slider, .achievement-slider, .testimonial-slider, .blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (min-width: 700px) {
+  .project-slider, .achievement-slider, .testimonial-slider {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .blog-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+.project-card, .achievement-card, .testimonial-card, .blog-list-item {
+  width: 100%;
+  min-width: 0;
+  max-width: 100vw;
+  margin: 0 auto 0.7rem auto;
+  border-radius: 0.7rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 700px) {
+  .project-card, .achievement-card, .testimonial-card, .blog-list-item {
+    width: 320px;
+    max-width: 320px;
+  }
+}
+
+/* GitHub calendar responsive */
+#github-calendar, section#github.light-card, section#github.main-card {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 0 !important;
+  overflow-x: auto !important;
+  box-sizing: border-box;
+  padding: 1.2rem 0.5rem 1.5rem 0.5rem !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.2rem !important;
+  border-radius: 1.2rem !important;
+  border: 1.5px solid var(--github-border, #e3f0ff) !important;
+  box-shadow: 0 2px 8px rgba(31,38,135,0.10) !important;
+  background: var(--github-calendar-bg, #18192a) !important;
+}
+#github-calendar svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100vw !important;
+  min-width: 0 !important;
+  display: block;
+}
+@media (max-width: 600px) {
+  #github-calendar, section#github.light-card, section#github.main-card {
+    font-size: 10px !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #github-calendar svg {
+    min-width: 0 !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* Hide scrollbars on mobile */
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Utility for mobile tweaks */
+.mobile-friendly {
+  width: 98vw !important;
+  max-width: 100vw !important;
+  min-width: 0 !important;
+  margin: 0.7rem auto !important;
+  border-radius: 0.7rem !important;
+  box-sizing: border-box;
+}
+
+/* Ensure readable text */
+h1, h2, h3, h4, h5, h6, .display-3, .fw-bold {
+  font-size: 1.2rem !important;
+  line-height: 1.3 !important;
+  word-break: break-word;
+}
+p, .card-text, .lead, label, span, li, a {
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+  word-break: break-word;
+}
+
+/* Images always fit */
+img, .rounded-circle.img-fluid, .project-card img, .project-card .project-img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+/* Buttons full width on mobile */
+.btn, .btn-outline-dark, .btn-outline-primary, .btn-outline-secondary {
+  width: 100%;
+  min-width: 0;
+  font-size: 1.1rem;
+  margin: 0.4rem 0;
+  padding: 0.7em 0;
+  border-radius: 1.2em;
+}
+@media (min-width: 700px) {
+  .btn, .btn-outline-dark, .btn-outline-primary, .btn-outline-secondary {
+    width: auto;
+    min-width: 110px;
+    padding: 0.55em 2em;
+  }
+}
+
+/* Theme toggle switch: bottom right on mobile, right center on desktop */
+.theme-toggle-switch {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  background: linear-gradient(90deg, #e3f0ff 0%, #b3d1f7 100%) !important;
+  border: 2.5px solid #36d1c4 !important;
+  box-shadow: 0 4px 16px rgba(54,209,196,0.18), 0 2px 8px rgba(54,209,196,0.10) !important;
+  position: fixed;
+  z-index: 3000;
+}
+@media (min-width: 700px) {
+  .theme-toggle-switch {
+    right: 3vw;
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    transform: translateY(-50%);
+    width: min(18vw, 80px);
+    height: min(8vw, 44px);
+  }
+}
+
+/* Remove all horizontal scroll and force stacking */
+html, body, .main-content, .section, .container {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+/* --- MOBILE-FIRST LAYOUT REFACTOR --- */
 
 body, html {
   min-height: 100vh;
@@ -645,6 +851,10 @@ section#github.light-card {
   margin: 0;
   border: none !important;
   box-shadow: 0 2px 8px rgba(54,209,196,0.10) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  background: linear-gradient(90deg, #e3f0ff 0%, #b3d1f7 100%) !important;
+  border: 2.5px solid #36d1c4 !important;
 }
 @media (max-width: 900px) {
   .theme-toggle-switch {
@@ -664,15 +874,37 @@ section#github.light-card {
 }
 @media (max-width: 600px) {
   .theme-toggle-switch {
-    width: 48px;
-    height: 24px;
-    right: 12px;
-    bottom: 16px;
-    left: auto;
-    top: auto;
-    transform: none;
-    margin: 0;
-    border-radius: 999px;
+    width: 64px !important;
+    height: 36px !important;
+    right: 16px !important;
+    bottom: 24px !important;
+    border-radius: 999px !important;
+    box-shadow: 0 4px 16px rgba(54,209,196,0.18), 0 2px 8px rgba(54,209,196,0.10) !important;
+    padding: 6px !important;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #e3f0ff 0%, #b3d1f7 100%) !important;
+    border: 2.5px solid #36d1c4 !important;
+    z-index: 3000;
+  }
+  .theme-toggle-switch .toggle-thumb {
+    width: 32px !important;
+    height: 32px !important;
+    left: 4px !important;
+    top: 2px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 8px rgba(54,209,196,0.18);
+    transition: left 0.4s, background 0.4s;
+  }
+  [data-theme='dark'] .theme-toggle-switch .toggle-thumb {
+    left: 28px !important;
+    background: #bfc6d1 !important;
+  }
+  .theme-toggle-switch .icon.sun, .theme-toggle-switch .icon.moon {
+    font-size: 1.5rem !important;
+    left: 10px !important;
+    top: 8px !important;
   }
   section#contact.main-card {
     padding-bottom: 140px !important;
@@ -680,8 +912,9 @@ section#github.light-card {
 }
 
 [data-theme='dark'] .theme-toggle-switch {
-  background: linear-gradient(90deg, #23243a 0%, #18192a 100%);
-  box-shadow: 0 2px 8px rgba(54,209,196,0.10);
+  background: linear-gradient(90deg, #23243a 0%, #18192a 100%) !important;
+  border: 2.5px solid #36d1c4 !important;
+  box-shadow: 0 2px 8px rgba(54,209,196,0.18) !important;
 }
 .theme-toggle-switch .toggle-track {
   width: 100%;
@@ -721,26 +954,20 @@ section#github.light-card {
   position: relative;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
-  background: #ffe066;
-  box-shadow: none !important;
+  border-radius: 50% !important;
+  background: #ffe066 !important;
+  box-shadow: 0 2px 8px rgba(54,209,196,0.15);
   z-index: 3;
   left: 2px;
   top: 2px;
   transition: left 0.4s, background 0.4s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  overflow: visible;
-  border: 2px solid #fff !important;
 }
 [data-theme='dark'] .theme-toggle-switch .toggle-thumb {
-  left: 46px;
-  background: #bfc6d1;
-  box-shadow: none !important;
+  left: 28px;
+  background: #bfc6d1 !important;
+  border: 2.5px solid #23243a !important;
 }
-.theme-toggle-switch .icon.sun {
+.theme-toggle-switch .icon.sun, .theme-toggle-switch .icon.moon {
   position: absolute;
   left: 7px; top: 7px;
   color: #ffe066;
@@ -842,457 +1069,8 @@ section#github a:hover {
   color: #b0b6c0 !important;
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: none;
-}
-
-:focus {
-  outline: 2.5px solid #36d1c4 !important;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px #ffe3f6;
-}
-.theme-toggle-switch:focus, .theme-toggle-switch a:focus {
-  outline: 2.5px solid #ff5e62 !important;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 3px #e3f0ff;
-}
-
-#skeleton-loader {
-  position: fixed;
-  z-index: 2000;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, #e3f0ff 0%, #ffe3f6 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  transition: opacity 0.4s;
-}
-.skeleton-navbar {
-  width: 100vw;
-  height: 60px;
-  background: #e3e3ee;
-  margin-bottom: 32px;
-  border-radius: 0 0 18px 18px;
-  box-shadow: 0 2px 12px rgba(31,38,135,0.06);
-}
-.skeleton-hero {
-  width: 90vw;
-  max-width: 900px;
-  height: 120px;
-  background: #f6eaff;
-  border-radius: 1.5rem;
-  margin-bottom: 32px;
-}
-.skeleton-section {
-  width: 90vw;
-  max-width: 900px;
-  height: 80px;
-  background: #e3e3ee;
-  border-radius: 1.5rem;
-  margin-bottom: 24px;
-}
-#skeleton-loader {
-  animation: skeleton-fade 1.2s infinite alternate;
-}
-@keyframes skeleton-fade {
-  from { opacity: 1; }
-  to { opacity: 0.7; }
-}
-
-[data-theme='light'] #skeleton-loader {
-  background: linear-gradient(135deg, #e3f0ff 0%, #ffe3f6 100%);
-}
-[data-theme='light'] .skeleton-navbar,
-[data-theme='light'] .skeleton-section {
-  background: #e3e3ee;
-}
-[data-theme='light'] .skeleton-hero {
-  background: #f6eaff;
-}
-[data-theme='dark'] #skeleton-loader {
-  background: linear-gradient(135deg, #18181c 0%, #23243a 100%);
-}
-[data-theme='dark'] .skeleton-navbar,
-[data-theme='dark'] .skeleton-section {
-  background: #23243a;
-}
-[data-theme='dark'] .skeleton-hero {
-  background: #23243a;
-}
-
-.achievement-slider-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  position: relative;
-  padding-bottom: 1.5rem;
-  display: flex;
-  justify-content: center;
-  min-height: 400px;
-}
-.achievement-slider {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 2vw;
-  padding-bottom: 0.5rem;
-  justify-content: center;
-}
-.achievement-scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  background: rgba(255,255,255,0.7);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  color: #667eea;
-  box-shadow: 0 2px 8px rgba(102,126,234,0.10);
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.achievement-scroll-btn.left { left: -20px; }
-.achievement-scroll-btn.right { right: -20px; }
-.achievement-scroll-btn:hover, .achievement-scroll-btn:focus {
-  background: #667eea;
-  color: #fff;
-}
-@media (max-width: 767px) {
-  .achievement-slider-container {
-    max-width: 98vw;
-  }
-  .achievement-scroll-btn.left { left: 0; }
-  .achievement-scroll-btn.right { right: 0; }
-  .achievement-slider {
-    gap: 4vw;
-  }
-}
-
-.achievement-card {
-  min-height: 340px;
-  max-height: 420px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.achievement-card .card-body {
-  min-height: 180px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section#achievements.main-card {
-  min-height: 420px;
-  height: auto;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-.achievement-slider-container {
-  min-height: 0;
-  height: auto;
-}
-.achievement-card {
-  min-width: 260px;
-  max-width: 320px;
-  min-height: 220px;
-  max-height: 320px;
-  height: auto;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 16px rgba(60,60,80,0.10);
-  border-radius: 1.2vw;
-  padding: 1.5rem 1rem;
-  background: #fff;
-}
-[data-theme='dark'] .achievement-card {
-  background: #23243a;
-}
-.achievement-card .card-body {
-  min-height: 100px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
-.achievement-card .card-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-.achievement-card .card-text {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-@media (max-width: 900px) {
-  .achievement-card {
-    min-width: 200px;
-    max-width: 90vw;
-    min-height: 180px;
-    max-height: 260px;
-    padding: 1rem 0.5rem;
-  }
-  section#achievements.main-card {
-    min-height: 320px;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-  }
-}
-
-/* Testimonial slider styles (similar to project slider) */
-.testimonial-slider-container {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.testimonial-scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(102, 126, 234, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-
-.testimonial-scroll-btn.left {
-  left: 10px;
-}
-
-.testimonial-scroll-btn.right {
-  right: 10px;
-}
-
-.testimonial-scroll-btn:hover, .testimonial-scroll-btn:focus {
-  background: #667eea;
-  color: #fff;
-}
-
-.testimonial-slider {
-  display: flex;
-  gap: 2vw;
-  padding: 1rem 0;
-  scroll-behavior: smooth;
-}
-
-.testimonial-card {
-  min-width: 260px;
-  max-width: 320px;
-  min-height: 220px;
-  max-height: 320px;
-  height: auto;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 16px rgba(60,60,80,0.10);
-  border-radius: 1.2vw;
-  padding: 1.5rem 1rem;
-  background: #fff;
-}
-
-[data-theme='dark'] .testimonial-card {
-  background: #23243a;
-}
-
-.testimonial-card .card-body {
-  min-height: 100px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
-
-.testimonial-card .card-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.testimonial-card .card-text {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-@media (max-width: 900px) {
-  .testimonial-card {
-    min-width: 200px;
-    max-width: 90vw;
-    min-height: 180px;
-    max-height: 260px;
-    padding: 1rem 0.5rem;
-  }
-}
-
-/* Hide achievement scroll buttons */
-.achievement-scroll-btn {
-  display: none !important;
-}
-
-/* Testimonial specific styling */
-.testimonial-card .blockquote {
-  color: inherit;
-}
-
-.testimonial-card .blockquote p {
-  color: inherit;
-  font-style: italic;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.testimonial-card .blockquote-footer {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-/* Form elements styling */
-.form-control {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: inherit !important;
-}
-
-.form-control:focus {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  border-color: #36d1c4 !important;
-  box-shadow: 0 0 0 0.2rem rgba(54, 209, 196, 0.25) !important;
-}
-
-[data-theme='light'] .form-control {
-  background-color: #fff !important;
-  border: 1px solid #e3f0ff !important;
-  color: #1a1a2e !important;
-}
-
-[data-theme='light'] .form-control:focus {
-  background-color: #fff !important;
-  border-color: #36d1c4 !important;
-  box-shadow: 0 0 0 0.2rem rgba(54, 209, 196, 0.25) !important;
-}
-
-/* Navigation styling */
-.navbar-nav .nav-link {
-  color: inherit !important;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #36d1c4 !important;
-}
-
-[data-theme='light'] .navbar-nav .nav-link:hover {
-  color: #ff5e62 !important;
-}
-
-.navbar-brand {
-  color: inherit !important;
-  font-weight: 700;
-}
-
-/* Footer styling */
-footer a {
-  color: inherit !important;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-footer a:hover {
-  color: #36d1c4 !important;
-}
-
-[data-theme='light'] footer a:hover {
-  color: #ff5e62 !important;
-}
-
-/* Blog styling */
-.blog-list-item a {
-  color: inherit !important;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.blog-list-item a:hover {
-  color: #36d1c4 !important;
-}
-
-[data-theme='light'] .blog-list-item a:hover {
-  color: #ff5e62 !important;
-}
-
-.blog-summary {
-  color: inherit !important;
-  opacity: 0.8;
-}
-
-section#github.light-card {
-  background: #f7faff !important;
-  color: #23243a !important;
-}
-
-section#github .form-label, section#github label, section#github select, section#github .text-muted, section#github a, section#github p, section#github li, section#github h2, section#github h4, section#github h3, section#github h1 {
-  color: inherit !important;
-}
-
-section#github a {
-  color: #0074d9 !important;
-}
-section#github a:hover {
-  color: #ff5e62 !important;
-}
-
-[data-theme='dark'] .main-card, [data-theme='dark'] .light-card, [data-theme='dark'] .quote-card, [data-theme='dark'] .card, [data-theme='dark'] .project-card, [data-theme='dark'] .achievement-card, [data-theme='dark'] .testimonial-card {
-  background: #18192a !important;
-  color: #f3f6fa !important;
-}
-
-[data-theme='dark'] .card-title, [data-theme='dark'] .fw-bold, [data-theme='dark'] h2, [data-theme='dark'] h1, [data-theme='dark'] .display-3 {
-  color: #fff !important;
-}
-[data-theme='dark'] .card-text, [data-theme='dark'] .lead, [data-theme='dark'] .form-label, [data-theme='dark'] .text-muted, [data-theme='dark'] label, [data-theme='dark'] select, [data-theme='dark'] a, [data-theme='dark'] span, [data-theme='dark'] p, [data-theme='dark'] li {
-  color: #e0e6f0 !important;
-}
-[data-theme='dark'] .text-muted {
-  color: #b0b6c0 !important;
-}
-
 /* Theme toggle switch improvements */
-.theme-toggle-switch {
+  .theme-toggle-switch {
   background: #23243a !important;
   border: 2px solid #36d1c4 !important;
 }
@@ -1303,10 +1081,6 @@ section#github a:hover {
 [data-theme='dark'] .theme-toggle-switch {
   background: #23243a !important;
   border: 2px solid #36d1c4 !important;
-}
-[data-theme='dark'] .theme-toggle-switch .toggle-thumb {
-  background: #f3f6fa !important;
-  box-shadow: 0 2px 8px rgba(54,209,196,0.25);
 }
 [data-theme='dark'] .theme-toggle-switch .toggle-bg.night {
   background: #23243a !important;
@@ -1327,11 +1101,55 @@ section#github a:hover {
 }
 
 @media (max-width: 768px) {
+  /* Fix GitHub calendar and all card/section overflow */
+  section#github.light-card,
+  #github-calendar,
+  .main-card, .light-card, .card, .project-card, .achievement-card, .testimonial-card, section {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    /* overflow-x: auto !important; */
+    box-sizing: border-box;
+  }
+  #github-calendar {
+    min-height: 260px !important;
+    height: 300px !important;
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+    display: block !important;
+    margin-bottom: 1.2rem !important;
+    margin-top: 0.5rem !important;
+  }
+  /* Ensure axis labels/names are visible */
+  #github-calendar text, #github-calendar .contrib-legend, #github-calendar .calendar-legend, #github-calendar .legend, #github-calendar .ContributionCalendar-legend, #github-calendar .github-calendar-legend {
+    font-size: 0.92rem !important;
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    /* overflow-x: visible !important; */
+  }
+  section#github.light-card {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    /* overflow-x: auto !important; */
+    box-sizing: border-box;
+    padding: 1.2rem 0.2rem 1.5rem 0.2rem !important;
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+  html, body {
+    /* overflow-x: hidden !important; */
+  }
+  /* Hide horizontal scrollbar for all elements */
+  *::-webkit-scrollbar {
+    display: none !important;
+  }
   /* Navbar: stack links vertically and center */
   .navbar-nav {
     flex-direction: column !important;
     align-items: center !important;
-    width: 100%;
+  width: 100%;
     gap: 0.5rem;
   }
   .navbar-nav .nav-link {
@@ -1382,10 +1200,10 @@ section#github a:hover {
   }
   /* Project/achievement/testimonial sliders */
   .project-slider, .achievement-slider, .testimonial-slider {
-    flex-direction: row;
+  flex-direction: row;
     gap: 3vw;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
     scroll-behavior: smooth;
   }
   .project-slider-container, .achievement-slider-container, .testimonial-slider-container {
@@ -1430,4 +1248,259 @@ section#github a:hover {
     line-height: 1.4 !important;
     word-break: break-word;
   }
-} 
+  /* Projects: grid layout */
+  .project-slider {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+  /* Achievements: grid layout */
+  .achievement-slider {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+  /* Testimonials: grid layout */
+  .testimonial-slider {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+  /* Blog list: grid layout */
+  .blog-list {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+  @media (max-width: 500px) {
+    .project-slider,
+    .achievement-slider,
+    .testimonial-slider {
+      grid-template-columns: 1fr;
+    }
+  }
+  .project-card, .achievement-card, .testimonial-card, .blog-list-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin: 0 auto 0.7rem auto !important;
+    border-radius: 0.7rem !important;
+    box-sizing: border-box;
+  }
+  .project-slider-container, .achievement-slider-container, .testimonial-slider-container {
+    max-width: 100vw !important;
+    overflow-x: visible !important;
+    padding: 0 !important;
+  }
+}
+
+/* --- PATCH: GitHub Calendar Responsive Fix --- */
+.calendar, #github-calendar, section#github.light-card {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 0 !important;
+  /* overflow-x: auto !important; */
+  box-sizing: border-box;
+  padding-bottom: 1.2rem !important;
+}
+.calendar svg, #github-calendar svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100vw !important;
+  display: block;
+}
+html, body, .main-content, .section, .container {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+@media (max-width: 600px) {
+  .calendar, #github-calendar, section#github.light-card {
+    font-size: 10px !important;
+    min-width: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .calendar svg, #github-calendar svg {
+    min-width: 0 !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* --- PATCH: Achievements Always Vertical --- */
+.achievement-slider {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.2rem !important;
+  overflow-x: visible !important;
+  padding-bottom: 0 !important;
+}
+@media (max-width: 900px) {
+  .achievement-slider {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .achievement-slider {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+}
+@media (max-width: 500px) {
+  .achievement-slider {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* --- Theme-adaptive GitHub Contributions Card --- */
+:root {
+  --github-bg: #f7faff;
+  --github-title: #23243a;
+  --github-text: #23243a;
+  --github-border: #e3f0ff;
+  --github-calendar-bg: #fff;
+}
+[data-theme='dark'] {
+  --github-bg: #18192a;
+  --github-title: #f3f6fa;
+  --github-text: #f3f6fa;
+  --github-border: #23243a;
+  --github-calendar-bg: #23243a;
+}
+.theme-adaptive-card {
+  background: var(--github-bg) !important;
+  color: var(--github-text) !important;
+  border: 1.5px solid var(--github-border, #e3f0ff) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 4px 24px rgba(31,38,135,0.10) !important;
+}
+.theme-adaptive-title {
+  color: var(--github-title) !important;
+}
+.theme-adaptive-calendar {
+  background: var(--github-calendar-bg) !important;
+  border-radius: 1rem !important;
+  border: 1.5px solid var(--github-border, #e3f0ff) !important;
+  box-shadow: 0 2px 8px rgba(31,38,135,0.06) !important;
+  padding: 1rem 0.5rem !important;
+}
+#commit-count, #commit-theme-icon {
+  color: var(--github-title) !important;
+  font-weight: 600;
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+[data-theme='dark'] #commit-count, [data-theme='dark'] #commit-theme-icon {
+  color: var(--github-title) !important;
+}
+
+#github-calendar .wday,
+#github-calendar text[dy][text-anchor="middle"]:first-child,
+#github-calendar text[dy][text-anchor="middle"]:nth-child(-n+7) {
+  display: none !important;
+  visibility: hidden !important;
+}
+/* Hide any SVG text that matches day names (Mon, Tue, etc.) */
+#github-calendar text {
+  /* Hide if the text is a day name */
+  font-size: 0 !important;
+}
+#github-calendar text:not([x]):not([y]) {
+  display: none !important;
+}
+
+/* Hero name/title font fix */
+.hero-card h1, .hero-card .display-3, .hero-card .fw-bold {
+  font-family: 'Space Grotesk', 'Poppins', 'Montserrat', Arial, sans-serif !important;
+  font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px !important;
+  line-height: 1.1 !important;
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(31,38,135,0.10);
+}
+[data-theme='light'] .hero-card h1, [data-theme='light'] .hero-card .display-3, [data-theme='light'] .hero-card .fw-bold {
+  color: #23243a !important;
+  text-shadow: none;
+}
+.hero-card h1 span {
+  color: #ff5e62 !important;
+  font-weight: 900 !important;
+  letter-spacing: 2px !important;
+}
+
+/* --- CONTACT FORM: MAXIMUM WIDTH FIELDS --- */
+#contactForm .form-control, #contactForm textarea.form-control, #contactForm button[type="submit"] {
+  width: 95% !important;
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block;
+}
+
+/* --- GITHUB CONTRIBUTIONS: FULL WIDTH, MATCH CARD, FIX HEIGHT --- */
+section#github.main-card, section#github.light-card, #github {
+  background: var(--github-bg, #f7faff) !important;
+  color: var(--github-text, #23243a) !important;
+  border: 1.5px solid var(--github-border, #e3f0ff) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 4px 24px rgba(31,38,135,0.10) !important;
+  width: 98vw !important;
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 2.2rem 1.5rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 320px !important;
+}
+#github, #github .gh-graph, #gh {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  /* overflow-x: auto !important; */
+  box-sizing: border-box;
+}
+@media (max-width: 700px) {
+  section#github.main-card, section#github.light-card, #github {
+    min-height: 420px !important;
+    padding: 1.2rem 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    /* overflow-x: auto !important; */
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #gh, #github .gh-graph, #gh svg, #github .gh-graph svg, #gh > div, #gh > div > svg {
+    min-width: 600px !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+    /* overflow-x: auto !important; */
+  }
+  #contactForm .form-control, #contactForm textarea.form-control, #contactForm button[type="submit"] {
+    width: 98vw !important;
+    max-width: 98vw !important;
+  }
+}
+  

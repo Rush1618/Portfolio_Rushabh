@@ -62,7 +62,7 @@ def contact_submit():
             conn.commit()
         # Send email notification
         try:
-            sender_email = "mail-projectsmailsender0@gmail.com"
+            sender_email = "projectsmailsender0@gmail.com"
             sender_password = "fengveihgrbueuvm"  # App password, no spaces
             receiver_email = "portfoliorushabh@gmail.com"
             subject = f"New Portfolio Message from {name}"
@@ -81,7 +81,7 @@ def contact_submit():
         flash('Thank you! Your message has been received.', 'success')
     else:
         flash('Please fill in all fields.', 'danger')
-    return redirect(url_for('home') + '#contact')
+    return redirect(url_for('homes') + '#contact')
 
 @app.context_processor
 def inject_current_year():
