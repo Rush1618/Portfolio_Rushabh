@@ -1454,6 +1454,25 @@ html, body, .main-content, .section, .container {
   margin-right: auto !important;
   display: block;
 }
+@media (min-width: 992px) {
+  section#contact.main-card {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  #contactForm {
+    width: 100% !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+    display: block;
+  }
+  #contactForm .form-control, #contactForm textarea.form-control, #contactForm button[type="submit"] {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: block;
+  }
+}
 
 /* --- GITHUB CONTRIBUTIONS: FULL WIDTH, MATCH CARD, FIX HEIGHT --- */
 section#github.main-card, section#github.light-card, #github {
@@ -1501,6 +1520,22 @@ section#github.main-card, section#github.light-card, #github {
   #contactForm .form-control, #contactForm textarea.form-control, #contactForm button[type="submit"] {
     width: 98vw !important;
     max-width: 98vw !important;
+  }
+}
+
+section#contact.main-card {
+  max-width: 900px !important;
+  width: 98vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+@media (min-width: 992px) {
+  #contactForm .form-control, #contactForm textarea.form-control, #contactForm button[type="submit"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
   }
 }
   

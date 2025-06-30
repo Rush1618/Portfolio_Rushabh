@@ -81,7 +81,7 @@ def contact_submit():
         flash('Thank you! Your message has been received.', 'success')
     else:
         flash('Please fill in all fields.', 'danger')
-    return redirect(url_for('homes') + '#contact')
+    return redirect(url_for('home') + '#contact')
 
 @app.context_processor
 def inject_current_year():

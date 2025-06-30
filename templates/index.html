@@ -189,27 +189,27 @@
   <h2>📊 My GitHub Stats</h2>
 
   <!-- GitHub Stats Card -->
-  <img src="https://github-readme-stats.vercel.app/api?username=Rush1618&show_icons=true&theme=radical" 
+  <img id="gh-stats" src="https://github-readme-stats.vercel.app/api?username=Rush1618&show_icons=true&theme=radical" 
        style="max-width: 100%; height: auto; margin: 10px 0;" 
        alt="GitHub Stats" />
 
   <!-- GitHub Streak -->
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Rush1618&theme=tokyonight" 
+  <img id="gh-streak" src="https://github-readme-streak-stats.herokuapp.com/?user=Rush1618&theme=tokyonight" 
        style="max-width: 100%; height: auto; margin: 10px 0;" 
        alt="GitHub Streak" />
 
   <!-- GitHub Activity Graph -->
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Rush1618&theme=github-compact" 
+  <img id="gh-activity" src="https://github-readme-activity-graph.vercel.app/graph?username=Rush1618&theme=github-compact" 
        style="max-width: 100%; height: auto; margin: 10px 0;" 
        alt="GitHub Contribution Graph" />
 
   <!-- GitHub Top Languages -->
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rush1618&layout=compact&theme=radical" 
+  <img id="gh-langs" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Rush1618&layout=compact&theme=radical" 
        style="max-width: 100%; height: auto; margin: 10px 0;" 
        alt="Top Languages" />
 
   <!-- GitHub Contributions Calendar -->
-  <img src="https://ghchart.rshah.org/Rush1618"
+  <img id="gh-calendar" src="https://ghchart.rshah.org/23243a/Rush1618"
        style="max-width: 100%; height: auto; margin: 10px 0;"
        alt="GitHub Contributions Calendar" />
 </section>
@@ -383,6 +383,41 @@
         }
       };
     }
+    function updateGitHubStatsTheme(theme) {
+      const themes = {
+        light: {
+          stats: "default",
+          streak: "default",
+          activity: "github-compact",
+          langs: "default",
+          calendar: "007ec6"
+        },
+        dark: {
+          stats: "radical",
+          streak: "tokyonight",
+          activity: "tokyo-night",
+          langs: "radical",
+          calendar: "23243a"
+        }
+      };
+      const t = themes[theme] || themes.dark;
+      document.getElementById("gh-stats").src =
+        `https://github-readme-stats.vercel.app/api?username=Rush1618&show_icons=true&theme=${t.stats}`;
+      document.getElementById("gh-streak").src =
+        `https://github-readme-streak-stats.herokuapp.com/?user=Rush1618&theme=${t.streak}`;
+      document.getElementById("gh-activity").src =
+        `https://github-readme-activity-graph.vercel.app/graph?username=Rush1618&theme=${t.activity}`;
+      document.getElementById("gh-langs").src =
+        `https://github-readme-stats.vercel.app/api/top-langs/?username=Rush1618&layout=compact&theme=${t.langs}`;
+      document.getElementById("gh-calendar").src =
+        `https://ghchart.rshah.org/${t.calendar}/Rush1618`;
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      updateGitHubStatsTheme(getTheme());
+      document.getElementById('themeToggleSwitch').addEventListener('click', function() {
+        setTimeout(() => updateGitHubStatsTheme(getTheme()), 100);
+      });
+    });
 </script>
 
 <!-- Google Analytics (replace G-XXXXXXXXXX with your own ID) -->
