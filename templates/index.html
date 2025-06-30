@@ -346,6 +346,19 @@
             const next = current === 'dark' ? 'light' : 'dark';
             setTheme(next);
             updateToggleSwitch(next);
+            // Re-trigger fade-in animation for GitHub stats section and images
+            const ghSection = document.getElementById('github-stats');
+            if (ghSection) {
+                ghSection.classList.remove('visible');
+                ghSection.offsetWidth; // force reflow
+                ghSection.classList.add('visible');
+                // Also animate all images inside
+                ghSection.querySelectorAll('img').forEach(img => {
+                    img.classList.remove('visible');
+                    img.offsetWidth;
+                    img.classList.add('visible');
+                });
+            }
         };
     });
     // Fade-in animation on scroll
