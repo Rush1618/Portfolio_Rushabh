@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container py-5">
-    <h2>Blog</h2>
+    <h2 class="mb-4">Blog</h2>
     <div>
         {% for post in posts %}
         <div class="mb-3">
             <a href="{{ url_for('blog_post', path=post.path) }}"><strong>{{ post.meta.title }}</strong></a>
-            <span class="text-muted">{{ post.meta.date }}</span>
+            <span class="text-muted ms-2">{{ post.meta.date }}</span>
         </div>
         {% endfor %}
     </div>
