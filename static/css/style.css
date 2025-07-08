@@ -83,8 +83,8 @@ section, .main-card, .quote-card, .light-card {
   aspect-ratio: 1 / 1.618 !important;
   width: auto !important;
   height: auto !important;
-  min-width: 220px;
-  max-width: 350px;
+  min-width: 180px;
+  max-width: 270px;
   display: flex;
   flex-direction: column;
   justify-content: center;
