@@ -1,6 +1,5 @@
 from flask import Flask, render_template, session, request, redirect, url_for, flash
-from flask_flatpages import FlatPages, pygments_style_defs
-import data
+from flask_flatpages import FlatPages
 import os
 from datetime import datetime
 import sqlite3
@@ -66,7 +65,6 @@ def save_testimonials(testimonials):
         json.dump(testimonials, f, ensure_ascii=False, indent=2)
 
 # Utility functions for pending testimonials
-import json
 PENDING_PATH = 'pending_testimonials.json'
 def load_pending_testimonials():
     if os.path.exists(PENDING_PATH):

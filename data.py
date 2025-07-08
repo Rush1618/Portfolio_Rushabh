@@ -68,7 +68,6 @@ CONTACT = {
     'linkedin': 'https://linkedin.com/in/rushabh-singh-22b23a2bb',
     'instagram': 'https://instagram.com/rushabhsingh69'
 }
-
 def load_testimonials():
     if os.path.exists('testimonials.json'):
         with open('testimonials.json', 'r', encoding='utf-8') as f:
@@ -76,3 +75,4 @@ def load_testimonials():
     return []
 
 TESTIMONIALS = load_testimonials() 
+

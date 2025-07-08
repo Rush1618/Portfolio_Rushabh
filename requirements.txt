@@ -3,3 +3,4 @@ Flask-FlatPages>=0.8
 Markdown
 gunicorn 
 Flask-Mail 
+requests 
