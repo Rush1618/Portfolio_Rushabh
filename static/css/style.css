@@ -150,7 +150,7 @@ section, .main-card, .quote-card, .light-card {
 
 /* Ensure readable text */
 h1, h2, h3, h4, h5, h6, .display-3, .fw-bold {
-  font-size: 1.2rem !important;
+  font-size: 1.2rem;
   line-height: 1.3 !important;
   word-break: break-word;
 }
@@ -1437,7 +1437,7 @@ html, body, .main-content, .section, .container {
 /* Hero name/title font fix */
 .hero-card h1, .hero-card .display-3, .hero-card .fw-bold {
   font-family: 'Space Grotesk', 'Poppins', 'Montserrat', Arial, sans-serif !important;
-  font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
+  font-size: clamp(2.2rem, 7vw, 3.5rem) !important;
   font-weight: 800 !important;
   letter-spacing: 1.5px !important;
   line-height: 1.1 !important;
@@ -1858,5 +1858,35 @@ body, .main-card, .navbar, .modal-content, .hero-card, .btn, .project-card, .ach
 :focus-visible {
   outline: 3px solid #36d1c4 !important;
   box-shadow: 0 0 0 3px #ff5e62 !important;
+}
+
+@media (max-width: 600px) {
+  #scrollToTopBtn {
+    bottom: 90px;
+    left: 16px;
+    right: auto;
+    z-index: 11001 !important;
+  }
+}
+  
+/* --- DARK MODE HAMBURGER ICON FIX --- */
+[data-theme='dark'] .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='rgba(255,255,255,0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+  
+/* --- FORCE HERO NAME SIZE --- */
+.hero-card h1.display-3.fw-bold {
+  font-size: clamp(2.5rem, 9vw, 4rem) !important;
+  line-height: 1.08 !important;
+}
+  
+/* --- FORCE HERO NAME SPAN SIZE --- */
+.hero-card h1.display-3.fw-bold span {
+  font-size: clamp(2.8rem, 11vw, 4.5rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 2.5px !important;
+  color: #ff5e62 !important;
+  line-height: 1.05 !important;
+  display: inline-block;
 }
   
