@@ -1920,3 +1920,24 @@ body, .main-card, .navbar, .modal-content, .hero-card, .btn, .project-card, .ach
   }
 }
   
+@media (max-width: 700px) {
+  .project-slider {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 1rem !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+  .project-card {
+    min-width: 80vw !important;
+    max-width: 90vw !important;
+    flex: 0 0 auto !important;
+    scroll-snap-align: start !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+  
