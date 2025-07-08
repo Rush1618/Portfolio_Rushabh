@@ -300,15 +300,15 @@
 </section>
 
 <!-- Flash messages for testimonials BELOW the section -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <div class="mt-3" aria-live="polite">
-      {% for category, message in messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mt-3" aria-live="polite">
+          {% for category, message in messages %}
         {% if message != 'Testimonial added successfully!' %}
           <div class="alert alert-{{ category }} text-center">{{ message }}</div>
         {% endif %}
       {% endfor %}
-    </div>
+  </div>
   {% endif %}
 {% endwith %}
 

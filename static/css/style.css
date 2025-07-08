@@ -1,4 +1,4 @@
-/* --- MOBILE-FIRST LAYOUT REFACTOR (FULL REPLACEMENT) --- */
+/* --- CLEANED & CONSOLIDATED CSS --- */
 
 html, body {
   width: 100vw;
@@ -6,8 +6,243 @@ html, body {
   max-width: 100vw;
   overflow-x: hidden;
   box-sizing: border-box;
+  font-family: 'Poppins', 'Space Grotesk', 'Inter', 'Montserrat', Arial, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0a0a0f 0%, #18181c 60%, #23243a 100%);
+  background-size: 400% 400%;
+  animation: gradientBG 18s ease infinite;
+  color: #f3f6fa;
   transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1);
 }
+
+[data-theme='light'] body, [data-theme='light'] html {
+  background: linear-gradient(135deg, #fff 0%, #e3f0ff 60%, #ffe3f6 100%);
+  color: #1a1a2e;
+}
+
+section, .main-card, .quote-card, .light-card {
+  width: 98vw;
+  max-width: 100vw;
+  margin: 1.2rem auto;
+  padding: 1.1rem 0.5rem;
+  border-radius: 0.7rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(40, 42, 60, 0.92);
+  color: #f3f6fa;
+  transition: background 0.6s, color 0.6s, border 0.5s, box-shadow 0.5s, filter 0.5s;
+}
+
+@media (min-width: 700px) {
+  section, .main-card, .quote-card, .light-card {
+    max-width: 900px;
+    padding: 2rem 2rem;
+  }
+}
+
+/* Card Styles */
+.project-card, .testimonial-card {
+  aspect-ratio: 1 / 1.3142;
+  min-width: 120px;
+  max-width: 270px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto 0.7rem auto;
+  border-radius: 0.7rem;
+  box-sizing: border-box;
+  background: rgba(40, 42, 60, 0.92);
+  color: #f3f6fa;
+  box-shadow: 0 2px 12px rgba(31,38,135,0.10);
+  border: 1.5px solid rgba(60,60,80,0.22);
+  transition: box-shadow 0.2s, background 0.3s, transform 0.2s;
+}
+.project-card:hover, .testimonial-card:hover, .achievement-card:hover {
+  box-shadow: 0 12px 32px rgba(31,38,135,0.18);
+  background: rgba(255,255,255,0.32);
+  transform: translateY(-6px) scale(1.04);
+}
+@media (min-width: 700px) {
+  .project-card, .testimonial-card, .achievement-card {
+    width: 320px;
+    max-width: 320px;
+  }
+}
+@media (max-width: 700px) {
+  .project-card, .testimonial-card {
+    min-width: 65vw;
+    max-width: 80vw;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Slider Styles */
+.project-slider, .achievement-slider, .testimonial-slider {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 700px) {
+  .project-slider, .achievement-slider, .testimonial-slider {
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+}
+
+/* Button Styles */
+.btn, .btn-outline-dark, .btn-outline-primary, .btn-outline-secondary {
+  width: 100%;
+  min-width: 0;
+  font-size: 1.1rem;
+  margin: 0.4rem 0;
+  padding: 0.7em 0;
+  border-radius: 1.2em;
+  background: linear-gradient(90deg, #3a3f5a 0%, #5f4b8b 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.10);
+  transition: background 0.3s, box-shadow 0.3s, color 0.2s;
+}
+.btn:hover, .btn:focus {
+  background: linear-gradient(90deg, #5f4b8b 0%, #3a3f5a 100%);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(118,75,162,0.18);
+}
+@media (min-width: 700px) {
+  .btn, .btn-outline-dark, .btn-outline-primary, .btn-outline-secondary {
+    width: auto;
+    min-width: 110px;
+    padding: 0.55em 2em;
+  }
+}
+
+/* Utility Classes */
+.mobile-friendly {
+  width: 98vw;
+  max-width: 100vw;
+  margin: 0.7rem auto;
+  border-radius: 0.7rem;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbars on mobile */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Images always fit */
+img, .rounded-circle.img-fluid, .project-card img, .project-card .project-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+/* Modern Typography */
+h1, h2, h3, h4, h5, h6, .display-3, .fw-bold {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  word-break: break-word;
+}
+p, .card-text, .lead, label, span, li, a {
+  font-size: 1rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Hero Card & Animated Background */
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #232526 0%, #414345 100%);
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -40%; left: -40%; width: 180%; height: 180%;
+  background: radial-gradient(circle at 60% 40%, #36d1c4 0%, transparent 60%),
+              radial-gradient(circle at 30% 70%, #ff5e62 0%, transparent 70%);
+  opacity: 0.18;
+  animation: heroBgMove 12s linear infinite alternate;
+  z-index: 0;
+}
+@keyframes heroBgMove {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.1) translate(40px, 30px); }
+}
+.hero-card > * { position: relative; z-index: 1; }
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ripple Effect for Buttons */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background: rgba(255,255,255,0.4);
+  pointer-events: none;
+}
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Focus Ring for Accessibility */
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+:focus-visible {
+  outline: 3px solid #36d1c4;
+  box-shadow: 0 0 0 3px #ff5e62;
+}
+
+/* Miscellaneous Utility */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0; width: 0%; height: 4px;
+  background: linear-gradient(90deg, #36d1c4 0%, #ff5e62 100%);
+  z-index: 99999;
+  transition: width 0.2s;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* --- MOBILE-FIRST LAYOUT REFACTOR (FULL REPLACEMENT) --- */
 
 body {
   font-family: 'Poppins', 'Space Grotesk', 'Inter', 'Montserrat', Arial, sans-serif;
@@ -152,7 +387,7 @@ section, .main-card, .quote-card, .light-card {
 
 /* Ensure readable text */
 h1, h2, h3, h4, h5, h6, .display-3, .fw-bold {
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   line-height: 1.3 !important;
   word-break: break-word;
 }
@@ -1894,10 +2129,10 @@ body, .main-card, .navbar, .modal-content, .hero-card, .btn, .project-card, .ach
   
 /* --- Testimonial Card Golden Ratio --- */
 .testimonial-card {
-  aspect-ratio: 1 / 1.618;
+  aspect-ratio: 1 / 1.3142;
   max-width: 350px;
   width: 100%;
-  min-width: 220px;
+  min-width: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1915,27 +2150,16 @@ body, .main-card, .navbar, .modal-content, .hero-card, .btn, .project-card, .ach
     max-width: 100vw !important;
   }
   .testimonial-card {
-    min-width: 80vw !important;
-    max-width: 90vw !important;
+    min-width: 40vw !important;
+    max-width: 65vw !important;
+    aspect-ratio: 1 / 1.3142 !important;
     flex: 0 0 auto !important;
     scroll-snap-align: start !important;
   }
-}
-  
-@media (max-width: 700px) {
-  .project-slider {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    gap: 1rem !important;
-    scroll-snap-type: x mandatory !important;
-    -webkit-overflow-scrolling: touch !important;
-    width: 100vw !important;
-    max-width: 100vw !important;
-  }
   .project-card {
-    min-width: 80vw !important;
-    max-width: 90vw !important;
+    min-width: 40vw !important;
+    max-width: 65vw !important;
+    aspect-ratio: 1 / 1.3142 !important;
     flex: 0 0 auto !important;
     scroll-snap-align: start !important;
     margin-left: auto !important;
