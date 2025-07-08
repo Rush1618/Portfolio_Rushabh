@@ -7,6 +7,11 @@ import sqlite3
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import json
+from werkzeug.utils import secure_filename
+from flask_mail import Mail, Message
+import uuid
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key_here'
@@ -29,9 +34,55 @@ def init_db():
         conn.commit()
 init_db()
 
+TESTIMONIALS_PATH = 'testimonials.json'
+UPLOAD_FOLDER = 'static/images/testimonials/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Email config (set these as environment variables in production)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'projectsmailsender0@gmail.com'
+app.config['MAIL_PASSWORD'] = 'pilc rutc sqbm aaka'
+app.config['MAIL_DEFAULT_SENDER'] = 'projectsmailsender0@gmail.com'
+mail = Mail(app)
+
+ADMIN_EMAIL = 'portfoliorushabh@gmail.com'  # CHANGE THIS
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def load_testimonials():
+    if os.path.exists(TESTIMONIALS_PATH):
+        with open(TESTIMONIALS_PATH, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return []
+
+def save_testimonials(testimonials):
+    with open(TESTIMONIALS_PATH, 'w', encoding='utf-8') as f:
+        json.dump(testimonials, f, ensure_ascii=False, indent=2)
+
+# Utility functions for pending testimonials
+import json
+PENDING_PATH = 'pending_testimonials.json'
+def load_pending_testimonials():
+    if os.path.exists(PENDING_PATH):
+        with open(PENDING_PATH, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return []
+def save_pending_testimonials(pending):
+    with open(PENDING_PATH, 'w', encoding='utf-8') as f:
+        json.dump(pending, f, indent=2)
+
+RENDER_BASE_URL = "https://portfolio-rushabh.onrender.com"
+
 @app.route('/')
 def home():
-    return render_template('index.html', data=data, pages=pages)
+    testimonials = [t for t in load_testimonials() if not t.get('pending', False)]
+    return render_template('index.html', data=data, pages=pages, testimonials=testimonials)
 
 @app.route('/blog/')
 def blog():
@@ -82,6 +133,80 @@ def contact_submit():
     else:
         flash('Please fill in all fields.', 'danger')
     return redirect(url_for('home') + '#contact')
+
+# When a testimonial is submitted, mark as pending and send approval email
+@app.route('/testimonials/add', methods=['GET', 'POST'])
+def add_testimonial():
+    if request.method == 'POST':
+        text = request.form.get('text')
+        email = request.form.get('email')
+        file = request.files.get('image')
+        author = request.form.get('author')
+        image_url = ''
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            image_url = filepath.replace('static/', '')
+        testimonial = {
+            'id': str(uuid.uuid4()),
+            'text': text,
+            'author': author,
+            'email': email,
+            'image': image_url,
+            'pending': True
+        }
+        # Save to pending testimonials
+        pending = load_pending_testimonials()
+        pending.append(testimonial)
+        save_pending_testimonials(pending)
+        # Send approval email
+        approve_url = f"{RENDER_BASE_URL}{url_for('approve_testimonial', id=testimonial['id'])}"
+        reject_url = f"{RENDER_BASE_URL}{url_for('reject_testimonial', id=testimonial['id'])}"
+        msg = Message('New Testimonial Pending Approval', recipients=[ADMIN_EMAIL])
+        msg.body = f"""
+New testimonial submitted:
+
+Author: {testimonial['author']}
+Email: {testimonial['email']}
+Text: {testimonial['text']}
+
+Approve: {approve_url}
+Reject: {reject_url}
+"""
+        mail.send(msg)
+        flash('Testimonial submitted and pending approval!', 'info')
+        return redirect(url_for('home'))
+    return render_template('add_testimonial.html', data=data)
+
+# Admin approval routes
+@app.route('/testimonials/approve/<id>')
+def approve_testimonial(id):
+    pending = load_pending_testimonials()
+    approved = load_testimonials()
+    for t in pending:
+        if t['id'] == id:
+            t['pending'] = False
+            approved.append(t)
+            save_testimonials(approved)
+            pending = [x for x in pending if x['id'] != id]
+            save_pending_testimonials(pending)
+            flash('Testimonial approved!', 'success')
+            break
+    return redirect(url_for('home'))
+
+@app.route('/testimonials/reject/<id>')
+def reject_testimonial(id):
+    pending = load_pending_testimonials()
+    pending = [x for x in pending if x['id'] != id]
+    save_pending_testimonials(pending)
+    flash('Testimonial rejected.', 'warning')
+    return redirect(url_for('home'))
+
+@app.route('/testimonials')
+def testimonials():
+    testimonials = load_testimonials()
+    return render_template('testimonials.html', testimonials=testimonials, data=data)
 
 @app.context_processor
 def inject_current_year():

@@ -1890,3 +1890,14 @@ body, .main-card, .navbar, .modal-content, .hero-card, .btn, .project-card, .ach
   display: inline-block;
 }
   
+/* --- Testimonial Card Golden Ratio --- */
+.testimonial-card {
+  aspect-ratio: 1 / 1.618;
+  max-width: 350px;
+  width: 100%;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+  
