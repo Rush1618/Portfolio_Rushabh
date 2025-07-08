@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, request, redirect, url_for, flash
 from flask_flatpages import FlatPages
+import data
 import os
 from datetime import datetime
 import sqlite3
