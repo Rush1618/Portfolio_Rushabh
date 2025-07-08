@@ -1901,3 +1901,22 @@ body, .main-card, .navbar, .modal-content, .hero-card, .btn, .project-card, .ach
   justify-content: center;
 }
   
+@media (max-width: 700px) {
+  .testimonial-slider {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 1rem !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+  .testimonial-card {
+    min-width: 80vw !important;
+    max-width: 90vw !important;
+    flex: 0 0 auto !important;
+    scroll-snap-align: start !important;
+  }
+}
+  
