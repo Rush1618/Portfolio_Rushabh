@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container py-5">
+<section class="container py-5">
     <h2 class="mb-4">Blog</h2>
-    <div>
+    <ul class="list-unstyled">
         {% for post in posts %}
-        <div class="mb-3">
+        <li class="mb-3">
             <a href="{{ url_for('blog_post', path=post.path) }}"><strong>{{ post.meta.title }}</strong></a>
             <span class="text-muted ms-2">{{ post.meta.date }}</span>
-        </div>
+        </li>
         {% endfor %}
-    </div>
+    </ul>
     <a href="/" class="btn btn-outline-secondary mt-2">Back to Home</a>
-</div>
+</section>
 {% endblock %} 
