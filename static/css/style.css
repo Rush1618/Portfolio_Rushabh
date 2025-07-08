@@ -79,7 +79,7 @@ section, .main-card, .quote-card, .light-card {
   }
 }
 
-.project-card, .achievement-card, .testimonial-card, .blog-list-item {
+.project-card, .testimonial-card {
   aspect-ratio: 1 / 1.618 !important;
   width: auto !important;
   height: auto !important;
@@ -94,7 +94,7 @@ section, .main-card, .quote-card, .light-card {
   transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1), border 0.5s, box-shadow 0.5s, filter 0.5s;
 }
 @media (min-width: 700px) {
-  .project-card, .achievement-card, .testimonial-card, .blog-list-item {
+  .project-card, .testimonial-card {
     width: 320px;
     max-width: 320px;
   }
